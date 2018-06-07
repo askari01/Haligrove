@@ -19,8 +19,6 @@ class FavoritesCell: UICollectionViewCell {
     }
     
     func setupFavoriteCellViews() {
-        
-        backgroundColor = .red
-        
+        backgroundColor = .black
     }
 }

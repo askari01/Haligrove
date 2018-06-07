@@ -22,7 +22,7 @@ class HomeCollectionController: UICollectionViewController, UICollectionViewDele
         homeViewSetup()
         
         // Register cell classes
-        self.collectionView!.register(FavoritesCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(FavoritesContainerCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     private func homeViewSetup() {
@@ -42,9 +42,7 @@ class HomeCollectionController: UICollectionViewController, UICollectionViewDele
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavoritesCell
-    
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavoritesContainerCell
         return cell
     }
     
