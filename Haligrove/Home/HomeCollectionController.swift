@@ -42,6 +42,23 @@ class HomeCollectionController: UICollectionViewController, UICollectionViewDele
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavoritesContainerCell
+        
+        if indexPath.item == 0 {
+            cell.setTitleLabel(title: "Favorites")
+        }
+        
+        if indexPath.item == 1 {
+            cell.setTitleLabel(title: "New Arrivals")
+        }
+        
+        if indexPath.item == 2 {
+            cell.setTitleLabel(title: "New Sales")
+        }
+        
+        if indexPath.item == 3 {
+            cell.setTitleLabel(title: "Suggestions")
+        }
+        
         return cell
     }
     

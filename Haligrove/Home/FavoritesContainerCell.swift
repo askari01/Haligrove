@@ -10,7 +10,16 @@ import UIKit
 
 class FavoritesContainerCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var favoritesLabel = UILabel()
     private let cellId = "favoritesCell"
+    
+    let favoritesCellCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,23 +30,10 @@ class FavoritesContainerCell: UICollectionViewCell, UICollectionViewDelegate, UI
         fatalError("init(coder:) has not been implemented")
     }
     
-    let favoritesLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Favorites"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let favoritesCellCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        return collectionView
-    }()
-    
     func setupFavoriteContainerCellViews() {
+        
+        favoritesLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        favoritesLabel.textAlignment = .center
        
         backgroundColor = .clear
         favoritesCellCollectionView.register(FavoritesCell.self, forCellWithReuseIdentifier: cellId)
@@ -50,6 +46,9 @@ class FavoritesContainerCell: UICollectionViewCell, UICollectionViewDelegate, UI
         favoritesLabel.anchor(top: topAnchor, right: rightAnchor, bottom: favoritesCellCollectionView.topAnchor, left: leftAnchor, paddingTop: 12, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
     }
     
+    func setTitleLabel(title: String) {
+        favoritesLabel.text = title
+    }
     
     // MARK: - CollectionViewDataSource
     
@@ -58,7 +57,8 @@ class FavoritesContainerCell: UICollectionViewCell, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FavoritesCell
+        let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FavoritesCell
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
