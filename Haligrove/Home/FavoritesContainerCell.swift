@@ -21,6 +21,14 @@ class FavoritesContainerCell: UICollectionViewCell, UICollectionViewDelegate, UI
         fatalError("init(coder:) has not been implemented")
     }
     
+    let favoritesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Favorites"
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textAlignment = .center
+        return label
+    }()
+    
     let favoritesCellCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -30,15 +38,20 @@ class FavoritesContainerCell: UICollectionViewCell, UICollectionViewDelegate, UI
     }()
     
     func setupFavoriteContainerCellViews() {
-        
+       
         backgroundColor = .clear
         favoritesCellCollectionView.register(FavoritesCell.self, forCellWithReuseIdentifier: cellId)
         favoritesCellCollectionView.delegate = self
         favoritesCellCollectionView.dataSource = self
         
+        addSubview(favoritesLabel)
         addSubview(favoritesCellCollectionView)
-        favoritesCellCollectionView.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        favoritesCellCollectionView.anchor(top: favoritesLabel.bottomAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        favoritesLabel.anchor(top: topAnchor, right: rightAnchor, bottom: favoritesCellCollectionView.topAnchor, left: leftAnchor, paddingTop: 12, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
     }
+    
+    
+    // MARK: - CollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -49,6 +62,6 @@ class FavoritesContainerCell: UICollectionViewCell, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.height, height: 150)
+        return CGSize(width: frame.height, height: frame.height - 60)
     }
 }

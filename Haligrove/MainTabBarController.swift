@@ -19,9 +19,8 @@ class MainTabBarController: UITabBarController {
     
     func setupViewControllers() {
         
-        // Home
         let layout = UICollectionViewFlowLayout()
-        let homeNavController = templateController(unselectedImage: #imageLiteral(resourceName: "home"), selectedImage: #imageLiteral(resourceName: "home"), rootViewController: HomeCollectionController(collectionViewLayout: layout))
+        let homeNavController = templateController(for: HomeCollectionController(collectionViewLayout: layout), title: "Home", image: #imageLiteral(resourceName: "home"))
         
         tabBar.tintColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
         tabBar.unselectedItemTintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -36,11 +35,12 @@ class MainTabBarController: UITabBarController {
         }
     }
     
-    fileprivate func templateController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController = UIViewController()) -> UINavigationController {
-        let viewController = rootViewController
-        let navController = UINavigationController(rootViewController: viewController)
-        navController.tabBarItem.image = unselectedImage
-        navController.tabBarItem.selectedImage = selectedImage
+    fileprivate func templateController(for rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+        let navController = UINavigationController(rootViewController: rootViewController)
+        //        navController.navigationBar.prefersLargeTitles = true
+        rootViewController.navigationItem.title = title
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = image
         return navController
     }
 }

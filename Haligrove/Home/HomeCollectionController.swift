@@ -18,23 +18,22 @@ class HomeCollectionController: UICollectionViewController, UICollectionViewDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         homeViewSetup()
-        
-        // Register cell classes
-        self.collectionView!.register(FavoritesContainerCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     private func homeViewSetup() {
+        
+        self.collectionView!.register(FavoritesContainerCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
         collectionView?.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Home"
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         navigationController?.navigationBar.tintColor = .gray
         navigationController?.navigationBar.barStyle = .black
+       
     }
-
-    // MARK: UICollectionViewDataSource
+    
+    // MARK:- UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -47,7 +46,7 @@ class HomeCollectionController: UICollectionViewController, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 180)
+        return CGSize(width: view.frame.width, height: 240)
     }
 }
 
