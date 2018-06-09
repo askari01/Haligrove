@@ -20,6 +20,11 @@
 		1147747320CB3EFA005BF2EB /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147747220CB3EFA005BF2EB /* ProductsTableViewController.swift */; };
 		1147747520CB48D5005BF2EB /* ProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147747420CB48D5005BF2EB /* ProductsCell.swift */; };
 		1147747720CB505D005BF2EB /* ExpandedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147747620CB505D005BF2EB /* ExpandedLabel.swift */; };
+		1147747A20CB673E005BF2EB /* StrainsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147747920CB673E005BF2EB /* StrainsViewController.swift */; };
+		1147747D20CB6784005BF2EB /* HashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147747C20CB6784005BF2EB /* HashViewController.swift */; };
+		1147748020CB67BC005BF2EB /* ExtractsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147747F20CB67BC005BF2EB /* ExtractsViewController.swift */; };
+		1147748320CB680B005BF2EB /* EdiblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147748220CB680B005BF2EB /* EdiblesViewController.swift */; };
+		1147748620CB6844005BF2EB /* ParaphernaliaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */; };
 		11633DEC20C9E86B00C35055 /* apiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DEB20C9E86B00C35055 /* apiService.swift */; };
 		11633DEE20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DED20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +45,11 @@
 		1147747220CB3EFA005BF2EB /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		1147747420CB48D5005BF2EB /* ProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCell.swift; sourceTree = "<group>"; };
 		1147747620CB505D005BF2EB /* ExpandedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedLabel.swift; sourceTree = "<group>"; };
+		1147747920CB673E005BF2EB /* StrainsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsViewController.swift; sourceTree = "<group>"; };
+		1147747C20CB6784005BF2EB /* HashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashViewController.swift; sourceTree = "<group>"; };
+		1147747F20CB67BC005BF2EB /* ExtractsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractsViewController.swift; sourceTree = "<group>"; };
+		1147748220CB680B005BF2EB /* EdiblesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdiblesViewController.swift; sourceTree = "<group>"; };
+		1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaphernaliaViewController.swift; sourceTree = "<group>"; };
 		11633DEB20C9E86B00C35055 /* apiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiService.swift; sourceTree = "<group>"; };
 		11633DED20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoadImageFromUrl+Cache+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,9 +134,54 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		1147747820CB671A005BF2EB /* Strains */ = {
+			isa = PBXGroup;
+			children = (
+				1147747920CB673E005BF2EB /* StrainsViewController.swift */,
+			);
+			path = Strains;
+			sourceTree = "<group>";
+		};
+		1147747B20CB6772005BF2EB /* Hash */ = {
+			isa = PBXGroup;
+			children = (
+				1147747C20CB6784005BF2EB /* HashViewController.swift */,
+			);
+			path = Hash;
+			sourceTree = "<group>";
+		};
+		1147747E20CB67A1005BF2EB /* Extracts */ = {
+			isa = PBXGroup;
+			children = (
+				1147747F20CB67BC005BF2EB /* ExtractsViewController.swift */,
+			);
+			path = Extracts;
+			sourceTree = "<group>";
+		};
+		1147748120CB67F2005BF2EB /* Edibles */ = {
+			isa = PBXGroup;
+			children = (
+				1147748220CB680B005BF2EB /* EdiblesViewController.swift */,
+			);
+			path = Edibles;
+			sourceTree = "<group>";
+		};
+		1147748420CB6820005BF2EB /* Paraphernalia */ = {
+			isa = PBXGroup;
+			children = (
+				1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */,
+			);
+			path = Paraphernalia;
+			sourceTree = "<group>";
+		};
 		1155E9B120CAFF6D0018CBF9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				1147747820CB671A005BF2EB /* Strains */,
+				1147747B20CB6772005BF2EB /* Hash */,
+				1147747E20CB67A1005BF2EB /* Extracts */,
+				1147748120CB67F2005BF2EB /* Edibles */,
+				1147748420CB6820005BF2EB /* Paraphernalia */,
 				1147747220CB3EFA005BF2EB /* ProductsTableViewController.swift */,
 				1147747420CB48D5005BF2EB /* ProductsCell.swift */,
 				1147747620CB505D005BF2EB /* ExpandedLabel.swift */,
@@ -213,18 +268,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1147748020CB67BC005BF2EB /* ExtractsViewController.swift in Sources */,
 				1147747520CB48D5005BF2EB /* ProductsCell.swift in Sources */,
 				11349C4520C86208008CB439 /* MainTabBarController.swift in Sources */,
+				1147747D20CB6784005BF2EB /* HashViewController.swift in Sources */,
 				11349C6120C8D095008CB439 /* Strain.swift in Sources */,
 				11349C5A20C89557008CB439 /* Anchor+Extension.swift in Sources */,
 				11349C5620C867D0008CB439 /* HomeCollectionController.swift in Sources */,
 				11349C5C20C8A175008CB439 /* FavoritesContainerCell.swift in Sources */,
 				11349C4320C86208008CB439 /* AppDelegate.swift in Sources */,
+				1147748620CB6844005BF2EB /* ParaphernaliaViewController.swift in Sources */,
 				11633DEE20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift in Sources */,
 				1147747320CB3EFA005BF2EB /* ProductsTableViewController.swift in Sources */,
 				11633DEC20C9E86B00C35055 /* apiService.swift in Sources */,
 				11349C5E20C8C7FC008CB439 /* FavoritesCell.swift in Sources */,
+				1147748320CB680B005BF2EB /* EdiblesViewController.swift in Sources */,
 				1147747720CB505D005BF2EB /* ExpandedLabel.swift in Sources */,
+				1147747A20CB673E005BF2EB /* StrainsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        let navStyles = UINavigationBar.appearance()
+        navStyles.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         
         return true
     }

@@ -65,5 +65,36 @@ class ProductsTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = products[indexPath.row]
+        print("indexPath: \(selectedCell)")
+        
+        if selectedCell.title == "Strains" {
+            let strainsController = StrainsViewController()
+            
+            self.navigationController?.pushViewController(strainsController, animated: true)
+        }
+        
+        if selectedCell.title == "Hash" {
+            let hashController = HashViewController()
+            self.navigationController?.pushViewController(hashController, animated: true)
+        }
+        
+        if selectedCell.title == "Extracts" {
+            let extractsController = ExtractsViewController()
+            self.navigationController?.pushViewController(extractsController, animated: true)
+        }
+        
+        if selectedCell.title == "Edibles" {
+            let ediblesController = EdiblesViewController()
+            self.navigationController?.pushViewController(ediblesController, animated: true)
+        }
+        
+        if selectedCell.title == "Paraphernalia" {
+            let paraphernaliaController = ParaphernaliaViewController()
+            self.navigationController?.pushViewController(paraphernaliaController, animated: true)
+        }
+    }
 
 }
