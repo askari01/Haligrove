@@ -16,7 +16,7 @@ class MainTabBarController: UITabBarController {
         setupViewControllers()
     }
     
-    //TODO: - reconstruct each navController without default controller
+    //TODO: - reconstruct each navController without default NavController
     func setupViewControllers() {
         
         // Home
