@@ -22,6 +22,10 @@ class ProductsTableViewController: UITableViewController {
         ProductsInfo(image: "ediblesIcon", title: "Edibles"),
         ProductsInfo(image: "paraphernaliaIcon", title: "Paraphernalia")
     ]
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +39,7 @@ class ProductsTableViewController: UITableViewController {
     fileprivate func setupTableView() {
         
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        navigationController?.navigationBar.barStyle = .black
         
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
@@ -68,7 +73,6 @@ class ProductsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = products[indexPath.row]
-        print("indexPath: \(selectedCell)")
         
         if selectedCell.title == "Strains" {
             let strainsController = StrainsViewController()

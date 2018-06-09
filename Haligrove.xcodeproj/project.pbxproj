@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		111BE6A020CC58AC00AD0DFB /* StrainsFoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */; };
+		111BE6A220CC72DF00AD0DFB /* StrainsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */; };
 		11349C4320C86208008CB439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11349C4220C86208008CB439 /* AppDelegate.swift */; };
 		11349C4520C86208008CB439 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11349C4420C86208008CB439 /* MainTabBarController.swift */; };
 		11349C4820C86208008CB439 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11349C4620C86208008CB439 /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsFoldingCell.swift; sourceTree = "<group>"; };
+		111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StrainsViewController+Extension.swift"; sourceTree = "<group>"; };
 		11349C3F20C86208008CB439 /* Haligrove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haligrove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11349C4220C86208008CB439 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11349C4420C86208008CB439 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 			children = (
 				11349C5920C89557008CB439 /* Anchor+Extension.swift */,
 				11633DED20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift */,
+				111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				1147747920CB673E005BF2EB /* StrainsViewController.swift */,
+				111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */,
 			);
 			path = Strains;
 			sourceTree = "<group>";
@@ -359,7 +365,9 @@
 				11349C5E20C8C7FC008CB439 /* FavoritesCell.swift in Sources */,
 				1147748320CB680B005BF2EB /* EdiblesViewController.swift in Sources */,
 				1147747720CB505D005BF2EB /* ExpandedLabel.swift in Sources */,
+				111BE6A020CC58AC00AD0DFB /* StrainsFoldingCell.swift in Sources */,
 				1147747A20CB673E005BF2EB /* StrainsViewController.swift in Sources */,
+				111BE6A220CC72DF00AD0DFB /* StrainsViewController+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +515,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T29WFY4Z2P;
 				INFOPLIST_FILE = "$(SRCROOT)/Haligrove/SupportingFiles/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.haligrove.Haligrove;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -523,7 +534,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T29WFY4Z2P;
 				INFOPLIST_FILE = "$(SRCROOT)/Haligrove/SupportingFiles/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.haligrove.Haligrove;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
