@@ -12,14 +12,23 @@ import EasyPeasy
 
 class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     
+    // MARK: - Property Declarations
     var strain: Strain?
     
     // foreground cell UI Items
-   
+    var imageContainer = UIImageView()
+    var strainNameLabel = UILabel()
+    var strainTypeLabel = UILabel()
+    var pricePerGramLabel = UILabel()
+    var priceOfFiveLabel = UILabel()
+    var inventoryBar = UIImageView()
+    var saleLabel = UILabel()
+    var newLabel = UILabel()
+    var favoritesButton = UIButton(type: .custom)
     
     // ContainerView UI Items
     
-    
+    // MARK: - Initializers
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -32,14 +41,96 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Class Methods
     override func animationDuration(_ itemIndex: NSInteger, type: FoldingCell.AnimationType) -> TimeInterval {
         let durations = [0.33, 0.26, 0.26]
         return durations[itemIndex]
     }
     
-    func set(strain: Strain) {
-        //TODO: Setup Cell
+    func setupFoldingCell(strain: Strain) {
+        
         self.strain = strain
+        
+        // Foreground View
+        imageContainer.loadImageUsingUrlString(urlString: strain.src)
+        imageContainer.contentMode = .scaleToFill
+        imageContainer.layer.cornerRadius = 5
+        imageContainer.layer.masksToBounds = true
+        
+        strainNameLabel.text = strain.name
+        strainNameLabel.adjustsFontSizeToFitWidth = true
+        strainNameLabel.layer.masksToBounds = true
+        strainNameLabel.minimumScaleFactor = 0.2
+        strainNameLabel.font = UIFont.boldSystemFont(ofSize: 23)
+        strainNameLabel.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        strainNameLabel.numberOfLines = 1
+        
+        strainTypeLabel.text = strain.type
+        strainTypeLabel.font = UIFont.systemFont(ofSize: 16)
+        strainTypeLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        
+        pricePerGramLabel.text = "$\(Int(strain.pricePerGram))/g"
+        pricePerGramLabel.font = UIFont.boldSystemFont(ofSize: 26)
+        pricePerGramLabel.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        
+        priceOfFiveLabel.text = "5 for $\(Int(strain.priceForFive))"
+        priceOfFiveLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        priceOfFiveLabel.font = UIFont.systemFont(ofSize: 14)
+        priceOfFiveLabel.numberOfLines = 3
+        
+        inventoryBar.contentMode = .scaleToFill
+        if strain.inventory == "full" {
+            inventoryBar.image = #imageLiteral(resourceName: "full")
+        }
+        if strain.inventory == "threeQuarters" {
+            inventoryBar.image = #imageLiteral(resourceName: "threeQuarters")
+        }
+        if strain.inventory == "med" {
+            inventoryBar.image = #imageLiteral(resourceName: "half")
+        }
+        if strain.inventory == "low" {
+            inventoryBar.image = #imageLiteral(resourceName: "oneQuarter")
+        }
+        
+        saleLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        saleLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        saleLabel.text = "sale"
+        saleLabel.backgroundColor = #colorLiteral(red: 0.6196078431, green: 0.3529411765, blue: 0.8352941176, alpha: 1)
+        saleLabel.layer.cornerRadius = 5
+        saleLabel.clipsToBounds = true
+        if strain.sale == "sale" {
+            saleLabel.isHidden = false
+        } else {
+            saleLabel.isHidden = true
+        }
+        
+        newLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        newLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        newLabel.text = "new"
+        newLabel.backgroundColor = #colorLiteral(red: 0.9185019135, green: 0.9065433741, blue: 0.3068211675, alpha: 1)
+        newLabel.layer.cornerRadius = 5
+        newLabel.clipsToBounds = true
+        if strain.isNew == "new" {
+            newLabel.isHidden = false
+        } else {
+            newLabel.isHidden = true
+        }
+        
+        let image: UIImage = #imageLiteral(resourceName: "star")
+        favoritesButton.setImage(image, for: .normal)
+        favoritesButton.tintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        favoritesButton.addTarget(self, action: #selector(favoritedStrain), for: .touchUpInside)
+    
+    }
+    
+    // TODO: Implement logic for saving favorite strain
+    @objc func favoritedStrain() {
+        if favoritesButton.tintColor == #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) {
+            favoritesButton.tintColor = #colorLiteral(red: 0.809882462, green: 0.5043435693, blue: 0.1557645798, alpha: 1)
+        } else {
+            favoritesButton.tintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        }
+        
     }
     
     func createForegroundView() -> RotatedView {
@@ -49,7 +140,43 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         foregroundView.translatesAutoresizingMaskIntoConstraints = false
         foregroundView.layer.cornerRadius = 5
         
-        contentView.addSubview(foregroundView)
+        let inventoryLabel = UILabel()
+        inventoryLabel.font = UIFont.systemFont(ofSize: 12)
+        inventoryLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        inventoryLabel.text = "inventory"
+        
+       contentView.addSubview(foregroundView)
+        
+        foregroundView.addSubview(imageContainer)
+        foregroundView.addSubview(strainNameLabel)
+        foregroundView.addSubview(strainTypeLabel)
+        foregroundView.addSubview(pricePerGramLabel)
+        foregroundView.addSubview(priceOfFiveLabel)
+        foregroundView.addSubview(inventoryBar)
+        foregroundView.addSubview(inventoryLabel)
+        foregroundView.addSubview(saleLabel)
+        foregroundView.addSubview(newLabel)
+        foregroundView.addSubview(favoritesButton)
+        
+        imageContainer.anchor(top: foregroundView.topAnchor, right: nil, bottom: foregroundView.bottomAnchor, left: foregroundView.leftAnchor, paddingTop: 8, paddingRight: 0, paddingBottom: 8, paddingLeft: 8, width: 120, height: foregroundView.frame.height)
+        
+        strainNameLabel.anchor(top: imageContainer.topAnchor, right: foregroundView.rightAnchor, bottom: nil, left: imageContainer.rightAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 8, width: 0, height: 0)
+        
+        strainTypeLabel.anchor(top: strainNameLabel.bottomAnchor, right: nil, bottom: nil, left: imageContainer.rightAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 8, width: 0, height: 0)
+        
+        pricePerGramLabel.anchor(top: strainTypeLabel.bottomAnchor, right: nil, bottom: nil, left: imageContainer.rightAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 8, width: 0, height: 0)
+        
+        priceOfFiveLabel.anchor(top: pricePerGramLabel.bottomAnchor, right: nil, bottom: nil, left: pricePerGramLabel.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        
+        inventoryBar.anchor(top: priceOfFiveLabel.bottomAnchor, right: foregroundView.rightAnchor, bottom: imageContainer.bottomAnchor, left: imageContainer.rightAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 9)
+        
+        inventoryLabel.anchor(top: nil, right: inventoryBar.rightAnchor, bottom: inventoryBar.topAnchor, left: nil, paddingTop: 0, paddingRight: 8, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        
+        newLabel.anchor(top: strainTypeLabel.topAnchor, right: nil, bottom: strainTypeLabel.bottomAnchor, left: strainTypeLabel.rightAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 8, width: 0, height: 0)
+        
+        saleLabel.anchor(top: strainTypeLabel.topAnchor, right: nil, bottom: strainTypeLabel.bottomAnchor, left: newLabel.rightAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 2, width: 0, height: 0)
+        
+        favoritesButton.anchor(top: strainNameLabel.bottomAnchor, right: strainNameLabel.rightAnchor, bottom: nil, left: nil, paddingTop: 0, paddingRight: 8, paddingBottom: 0, paddingLeft: 0, width: 30, height: 30)
 
         foregroundView.easy.layout([
             Height(120),
@@ -92,15 +219,11 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         return containerView
     }
     
-    
-    
-    
     @objc func showStrainInfoView() {
         print("present info view")
     }
     
     @objc func addToCart() {
         print("add to cart button pressed")
-        
     }
 }

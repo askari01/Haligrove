@@ -10,6 +10,7 @@ import UIKit
 
 class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - Property Declarations
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
     var strains = [Strain]()
@@ -24,6 +25,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     private var strainsTableView: UITableView!
     let reuseIdentifier = "strainCell"
     
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchJSON()
@@ -31,6 +33,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         setup()
     }
     
+    // MARK: - Class Methods
     fileprivate func fetchJSON() {
         let urlString = "http://app.haligrove.com/strainData.json"
         guard let url = URL(string: urlString) else { return }
@@ -48,7 +51,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 do {
                     let decoder = JSONDecoder()
                     self.strains = try decoder.decode([Strain].self, from: data)
-                    self.strainsTableView.reloadData()
+                    self.strainsTableView.reloadWithAnimation()
                     self.activityIndicator.stopAnimating()
                 } catch let jsonErr {
                     print("Failed: ", jsonErr)
@@ -163,7 +166,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             strain = strains[indexPath.row]
         }
-        cell.set(strain: strain)
+        cell.setupFoldingCell(strain: strain)
         
         return cell
     }
