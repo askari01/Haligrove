@@ -125,12 +125,7 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     
     // TODO: Implement logic for saving favorite strain
     @objc func favoritedStrain() {
-        if favoritesButton.tintColor == #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) {
-            favoritesButton.tintColor = #colorLiteral(red: 0.809882462, green: 0.5043435693, blue: 0.1557645798, alpha: 1)
-        } else {
-            favoritesButton.tintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        }
-        
+       print("favorites button tapped")
     }
     
     func createForegroundView() -> RotatedView {

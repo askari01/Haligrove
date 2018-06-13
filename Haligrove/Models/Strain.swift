@@ -37,4 +37,6 @@ struct Strain: Decodable {
     let appetite: Int
     let overall: Int
     let soldOut: String
+    
+    var isFavorite: Bool?
 }
