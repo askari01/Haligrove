@@ -8,11 +8,16 @@
 
 import UIKit
 
-class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+protocol StrainsViewControllerDelegate: class {
+    func didTapFavorites(cell: StrainsFoldingCell)
+}
+
+class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StrainsViewControllerDelegate {
     
     // MARK: - Property Declarations
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
+    var strainsTableView: UITableView!
     var strains = [Strain]()
     var filteredStrains = [Strain]()
     
@@ -22,47 +27,22 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var itemHeight: [CGFloat] = []
     
     let searchController = UISearchController(searchResultsController: nil)
-    private var strainsTableView: UITableView!
     let reuseIdentifier = "strainCell"
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchJSON()
         setupTableView()
         setup()
+        ApiService.shared.fetchJSON { [weak self] (data: [Strain]) in
+            self?.strains = data
+            self?.activityIndicator.stopAnimating()
+            self?.strainsTableView.reloadWithAnimation()
+        }
     }
     
     // MARK: - Class Methods
-    fileprivate func fetchJSON() {
-        let urlString = "http://app.haligrove.com/strainData.json"
-        guard let url = URL(string: urlString) else { return }
-        let config = URLSessionConfiguration.default
-        config.requestCachePolicy = .reloadIgnoringLocalCacheData
-        config.urlCache = nil
-        
-        URLSession(configuration: config).dataTask(with: url) { (data, res, err) in
-            DispatchQueue.main.async {
-                if let err = err {
-                    print("Failed: ", err)
-                    return
-                }
-                guard let data = data else { return }
-                do {
-                    let decoder = JSONDecoder()
-                    self.strains = try decoder.decode([Strain].self, from: data)
-                    self.strainsTableView.reloadWithAnimation()
-                    self.activityIndicator.stopAnimating()
-                } catch let jsonErr {
-                    print("Failed: ", jsonErr)
-                }
-            }
-            
-            }.resume()
-    }
-    
     func setupTableView() {
-        
         navigationItem.title = "Strains"
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -136,6 +116,16 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         strainsTableView.reloadData()
     }
     
+    // MARK: - Delegate Methods
+    func didTapFavorites(cell: StrainsFoldingCell) {
+        guard let indexTapped = strainsTableView.indexPath(for: cell) else { return }
+        let theStrain = strains[indexTapped.row]
+        let hasFavorited = theStrain.isFavorite
+        strains[indexTapped.row].isFavorite = !hasFavorited
+        print(strains[indexTapped.row].isFavorite)
+        cell.favoritesButton.imageView?.tintColor = hasFavorited ? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : .orange
+    }
+    
     
     // MARK: - TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -159,13 +149,18 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StrainsFoldingCell
         
-        let strain: Strain
+        var strain: Strain
+        cell.delegate = self
         
         if isFiltering() {
             strain = filteredStrains[indexPath.row]
+            cell.favoritesButton.isHidden = true
         } else {
             strain = strains[indexPath.row]
+            cell.favoritesButton.isHidden = false
         }
+        
+        cell.favoritesButton.imageView?.tintColor = strain.isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         cell.setupFoldingCell(strain: strain)
         
         return cell
@@ -198,5 +193,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
             tableView.endUpdates()
         }, completion: nil)
     }
+    
+    
     
 }
