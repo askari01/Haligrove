@@ -38,5 +38,5 @@ struct Strain: Decodable {
     let overall: Int
     let soldOut: String
     
-    var isFavorite: Bool?
+    var isFavorite: Bool
 }

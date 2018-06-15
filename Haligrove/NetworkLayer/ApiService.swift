@@ -6,12 +6,11 @@
 //  Copyright © 2018 Phillip Carlino. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class apiService {
+class ApiService {
     
-    
-    static let shared = apiService()
+    static let shared = ApiService()
     
     // networking code goes here
     
