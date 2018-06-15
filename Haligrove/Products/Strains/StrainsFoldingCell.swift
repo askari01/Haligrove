@@ -26,6 +26,8 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     var newLabel = UILabel()
     var favoritesButton = UIButton(type: .custom)
     
+    var isFavorite: Bool = false
+    
     // ContainerView UI Items
     
     // MARK: - Initializers
@@ -118,7 +120,6 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         
         let image: UIImage = #imageLiteral(resourceName: "star")
         favoritesButton.setImage(image, for: .normal)
-        favoritesButton.tintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         favoritesButton.addTarget(self, action: #selector(favoritedStrain), for: .touchUpInside)
     
     }
@@ -126,6 +127,9 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     // TODO: Implement logic for saving favorite strain
     @objc func favoritedStrain() {
        print("favorites button tapped")
+        isFavorite = !isFavorite
+        favoritesButton.imageView?.tintColor = isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        
     }
     
     func createForegroundView() -> RotatedView {
