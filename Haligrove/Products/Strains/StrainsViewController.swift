@@ -32,22 +32,16 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchJSON()
         setupTableView()
         setup()
+        ApiService.shared.fetchJSON { (data: [Strain]) in
+            self.strains = data
+            self.activityIndicator.stopAnimating()
+            self.strainsTableView.reloadWithAnimation()
+        }
     }
     
     // MARK: - Class Methods
-    func didTapFavorites(cell: StrainsFoldingCell) {
-        guard let indexTapped = strainsTableView.indexPath(for: cell) else { return }
-        let theStrain = strains[indexTapped.row]
-        let hasFavorited = theStrain.isFavorite
-        strains[indexTapped.row].isFavorite = !hasFavorited
-        print(strains[indexTapped.row].isFavorite)
-        cell.favoritesButton.imageView?.tintColor = hasFavorited ? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : .orange
-        
-    }
-    
     func setupTableView() {
         navigationItem.title = "Strains"
         searchController.searchResultsUpdater = self
@@ -122,6 +116,16 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         strainsTableView.reloadData()
     }
     
+    // MARK: - Delegate Methods
+    func didTapFavorites(cell: StrainsFoldingCell) {
+        guard let indexTapped = strainsTableView.indexPath(for: cell) else { return }
+        let theStrain = strains[indexTapped.row]
+        let hasFavorited = theStrain.isFavorite
+        strains[indexTapped.row].isFavorite = !hasFavorited
+        print(strains[indexTapped.row].isFavorite)
+        cell.favoritesButton.imageView?.tintColor = hasFavorited ? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : .orange
+    }
+    
     
     // MARK: - TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,7 +162,6 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.favoritesButton.imageView?.tintColor = strain.isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         cell.setupFoldingCell(strain: strain)
-        
         
         return cell
     }

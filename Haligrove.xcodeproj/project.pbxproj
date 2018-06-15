@@ -31,7 +31,6 @@
 		11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DEB20C9E86B00C35055 /* ApiService.swift */; };
 		11633DEE20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DED20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift */; };
 		11842EF320D0BF4C00B925A3 /* Toggle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11842EF220D0BF4C00B925A3 /* Toggle+Extension.swift */; };
-		11842EF520D0CA1A00B925A3 /* FetchJsonFromUrl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11842EF420D0CA1A00B925A3 /* FetchJsonFromUrl+Extension.swift */; };
 		96092585EC6CA7E6F64A4ACC /* Pods_Haligrove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E838030C5B9ECC13DC62D8 /* Pods_Haligrove.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +61,6 @@
 		11633DEB20C9E86B00C35055 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		11633DED20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoadImageFromUrl+Cache+Extension.swift"; sourceTree = "<group>"; };
 		11842EF220D0BF4C00B925A3 /* Toggle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toggle+Extension.swift"; sourceTree = "<group>"; };
-		11842EF420D0CA1A00B925A3 /* FetchJsonFromUrl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FetchJsonFromUrl+Extension.swift"; sourceTree = "<group>"; };
 		98E838030C5B9ECC13DC62D8 /* Pods_Haligrove.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Haligrove.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		990CE994EF076436E5B143F2 /* Pods-Haligrove.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Haligrove.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Haligrove/Pods-Haligrove.debug.xcconfig"; sourceTree = "<group>"; };
 		BB01F4D4AFA9F43A3DFFE875 /* Pods-Haligrove.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Haligrove.release.xcconfig"; path = "Pods/Target Support Files/Pods-Haligrove/Pods-Haligrove.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 				111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */,
 				113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */,
 				11842EF220D0BF4C00B925A3 /* Toggle+Extension.swift */,
-				11842EF420D0CA1A00B925A3 /* FetchJsonFromUrl+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -374,7 +371,6 @@
 				11842EF320D0BF4C00B925A3 /* Toggle+Extension.swift in Sources */,
 				11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */,
 				11349C5E20C8C7FC008CB439 /* FavoritesCell.swift in Sources */,
-				11842EF520D0CA1A00B925A3 /* FetchJsonFromUrl+Extension.swift in Sources */,
 				1147748320CB680B005BF2EB /* EdiblesViewController.swift in Sources */,
 				1147747720CB505D005BF2EB /* ExpandedLabel.swift in Sources */,
 				111BE6A020CC58AC00AD0DFB /* StrainsFoldingCell.swift in Sources */,
