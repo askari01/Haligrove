@@ -34,10 +34,10 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         setupTableView()
         setup()
-        ApiService.shared.fetchJSON { (data: [Strain]) in
-            self.strains = data
-            self.activityIndicator.stopAnimating()
-            self.strainsTableView.reloadWithAnimation()
+        ApiService.shared.fetchJSON { [weak self] (data: [Strain]) in
+            self?.strains = data
+            self?.activityIndicator.stopAnimating()
+            self?.strainsTableView.reloadWithAnimation()
         }
     }
     
