@@ -41,10 +41,6 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [homeNavController, productsNavController, infoNavController, salesNavController, cartNavController]
         
-        guard let items = tabBar.items else { return }
-        for item in items {
-            item.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-        }
     }
     
     fileprivate func templateController(for rootViewController: UIViewController = UIViewController(), title: String, image: UIImage) -> UIViewController {

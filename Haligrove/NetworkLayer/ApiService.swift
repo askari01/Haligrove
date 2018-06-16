@@ -12,12 +12,12 @@ class ApiService {
     
     static var shared = ApiService()
     
-    let strainUrl = "http://app.haligrove.com/strainData.json"
+    let urlString = "http://app.haligrove.com/strainData.json"
     
     // Fetch Strains from url
     func fetchJSON<T: Decodable>(completion: @escaping ([T]) -> ()) {
         
-        guard let url = URL(string: strainUrl) else { return }
+        guard let url = URL(string: urlString) else { return }
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         config.urlCache = nil
