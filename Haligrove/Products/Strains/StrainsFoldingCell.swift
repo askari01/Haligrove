@@ -26,8 +26,7 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     var saleLabel = UILabel()
     var newLabel = UILabel()
     var favoritesButton = UIButton(type: .custom)
-    
-    var isFavorite: Bool = false
+    var isFavorite: Bool?
     
     // ContainerView UI Items
     
@@ -127,7 +126,7 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     
     // TODO: Implement logic for saving favorite strain
     @objc func favoritedStrain() {
-        delegate?.didTapFavorites(cell: self)
+        delegate?.didTapFavoritesButton(in: self)
     }
     
     func createForegroundView() -> RotatedView {

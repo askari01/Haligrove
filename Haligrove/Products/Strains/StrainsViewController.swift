@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol StrainsViewControllerDelegate: class {
-    func didTapFavorites(cell: StrainsFoldingCell)
-}
-
 class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StrainsViewControllerDelegate {
     
     // MARK: - Property Declarations
@@ -28,13 +24,14 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let searchController = UISearchController(searchResultsController: nil)
     let reuseIdentifier = "strainCell"
+    let urlString = "http://app.haligrove.com/strainData.json"
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setup()
-        ApiService.shared.fetchJSON { [weak self] (data: [Strain]) in
+        ApiService.shared.fetchJson(from: urlString) { [weak self] (data: [Strain]) in
             self?.strains = data
             self?.activityIndicator.stopAnimating()
             self?.strainsTableView.reloadWithAnimation()
@@ -117,15 +114,30 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     // MARK: - Delegate Methods
-    func didTapFavorites(cell: StrainsFoldingCell) {
+    func didTapFavoritesButton(in cell: StrainsFoldingCell) {
         guard let indexTapped = strainsTableView.indexPath(for: cell) else { return }
-        let theStrain = strains[indexTapped.row]
+        
+        var theStrain = strains[indexTapped.row]
+        if isFiltering() {
+           theStrain = filteredStrains[indexTapped.row]
+        }
         let hasFavorited = theStrain.isFavorite
-        strains[indexTapped.row].isFavorite = !hasFavorited
-        print(strains[indexTapped.row].isFavorite)
-        cell.favoritesButton.imageView?.tintColor = hasFavorited ? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : .orange
+        if isFiltering() {
+            filteredStrains[indexTapped.row].isFavorite = !hasFavorited
+            for index in 0...strains.count - 1 {
+                if strains[index].name == filteredStrains[indexTapped.row].name {
+                    strains[index].isFavorite = !hasFavorited
+                }
+            }
+            cell.favoritesButton.imageView?.tintColor = hasFavorited ?  #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : .orange
+            print(filteredStrains[indexTapped.row].isFavorite)
+        } else {
+            strains[indexTapped.row].isFavorite = !hasFavorited
+            cell.favoritesButton.imageView?.tintColor = hasFavorited ? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : .orange
+            print(strains[indexTapped.row].isFavorite)
+        }
+        
     }
-    
     
     // MARK: - TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -154,10 +166,8 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if isFiltering() {
             strain = filteredStrains[indexPath.row]
-            cell.favoritesButton.isHidden = true
         } else {
             strain = strains[indexPath.row]
-            cell.favoritesButton.isHidden = false
         }
         
         cell.favoritesButton.imageView?.tintColor = strain.isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -193,7 +203,9 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
             tableView.endUpdates()
         }, completion: nil)
     }
-    
-    
-    
+}
+
+// MARK: - Protocols
+protocol StrainsViewControllerDelegate: class {
+    func didTapFavoritesButton(in cell: StrainsFoldingCell)
 }
