@@ -13,7 +13,7 @@ import EasyPeasy
 class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     
     // MARK: - Property Declarations
-    var strain: Strain?
+    var strain: Product?
     weak var delegate: StrainsViewControllerDelegate?
     
     // foreground cell UI Items
@@ -49,7 +49,7 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         return durations[itemIndex]
     }
     
-    func setupFoldingCell(strain: Strain) {
+    func setupFoldingCell(strain: Product) {
         
         self.strain = strain
         

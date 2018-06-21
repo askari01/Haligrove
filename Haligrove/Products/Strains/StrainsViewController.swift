@@ -14,8 +14,8 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
     var strainsTableView: UITableView!
-    var strains = [Strain]()
-    var filteredStrains = [Strain]()
+    var strains = [Product]()
+    var filteredStrains = [Product]()
     
     let closeHeight: CGFloat = 136
     let openHeight: CGFloat = 375
@@ -31,7 +31,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         setupTableView()
         setup()
-        ApiService.shared.fetchJson(from: urlString) { [weak self] (data: [Strain]) in
+        ApiService.shared.fetchJson(from: urlString) { [weak self] (data: [Product]) in
             self?.strains = data
             self?.activityIndicator.stopAnimating()
             self?.strainsTableView.reloadWithAnimation()
@@ -79,7 +79,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredStrains = strains.filter({(strain: Strain) -> Bool in
+        filteredStrains = strains.filter({(strain: Product) -> Bool in
             let doesCategoryMatch = (scope == "All") || (strain.type == scope)
             if searchBarIsEmpty() {
                 return doesCategoryMatch
@@ -161,7 +161,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StrainsFoldingCell
         
-        var strain: Strain
+        var strain: Product
         cell.delegate = self
         
         if isFiltering() {

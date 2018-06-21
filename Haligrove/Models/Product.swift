@@ -14,7 +14,7 @@ enum StrainType: String {
     case hybrid = "Hybrid"
 }
 
-struct Strain: Decodable {
+struct Product: Decodable {
     let id: String
     let name: String
     let src: String

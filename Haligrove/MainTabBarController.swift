@@ -20,7 +20,7 @@ class MainTabBarController: UITabBarController {
     func setupViewControllers() {
         
         // Home
-        let homeNavController = templateController(for: HomeCollectionController(collectionViewLayout: UICollectionViewFlowLayout()), title: "Home", image: #imageLiteral(resourceName: "home"))
+        let homeNavController = templateController(for: HomeViewController(), title: "Home", image: #imageLiteral(resourceName: "home"))
         
         // Products
         let productsNavController = templateController(for: ProductsTableViewController(), title: "Products", image: #imageLiteral(resourceName: "strains"))
