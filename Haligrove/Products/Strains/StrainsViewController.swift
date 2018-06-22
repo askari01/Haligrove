@@ -84,7 +84,8 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
             if searchBarIsEmpty() {
                 return doesCategoryMatch
             } else {
-                return doesCategoryMatch && strain.name.lowercased().contains(searchText.lowercased())
+                guard let name = strain.name else { return false }
+                return doesCategoryMatch && name.lowercased().contains(searchText.lowercased())
             }
             
         })
@@ -115,13 +116,13 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - Delegate Methods
     func didTapFavoritesButton(in cell: StrainsFoldingCell) {
-        guard let indexTapped = strainsTableView.indexPath(for: cell) else { return }
         
-        var theStrain = strains[indexTapped.row]
+        guard let indexTapped = strainsTableView.indexPath(for: cell) else { return }
+        var thisStrain = strains[indexTapped.row]
         if isFiltering() {
-           theStrain = filteredStrains[indexTapped.row]
+           thisStrain = filteredStrains[indexTapped.row]
         }
-        let hasFavorited = theStrain.isFavorite
+        guard let hasFavorited = thisStrain.isFavorite else { return }
         if isFiltering() {
             filteredStrains[indexTapped.row].isFavorite = !hasFavorited
             for index in 0...strains.count - 1 {
@@ -129,14 +130,30 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
                     strains[index].isFavorite = !hasFavorited
                 }
             }
+            hasFavorited ? removeFromFavorites(thisStrain) : addToFavorites(thisStrain)
             cell.favoritesButton.imageView?.tintColor = hasFavorited ?  #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : .orange
-            print(filteredStrains[indexTapped.row].isFavorite)
         } else {
             strains[indexTapped.row].isFavorite = !hasFavorited
+            hasFavorited ? removeFromFavorites(thisStrain) : addToFavorites(thisStrain)
             cell.favoritesButton.imageView?.tintColor = hasFavorited ? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : .orange
-            print(strains[indexTapped.row].isFavorite)
         }
         
+    }
+    
+    let favoriteKey = "favoriteKey"
+    
+    func removeFromFavorites(_ strain: Product) {
+        print("removing \(strain.name ?? "") from favorites")
+    }
+    
+    func addToFavorites(_ strain: Product) {
+        print("adding \(strain.name ?? "") to favorites")
+        let data = NSKeyedArchiver.archivedData(withRootObject: strain)
+        UserDefaults.standard.set(data, forKey: favoriteKey)
+        
+        // get data from UserDefaults
+//        guard let favoriteData = UserDefaults.standard.data(forKey: favoriteKey) else { return }
+//        let favoritedStrain = NSKeyedUnarchiver.unarchiveObject(with: favoriteData) as? Product
     }
     
     // MARK: - TableViewDataSource
@@ -144,8 +161,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if isFiltering() {
             return filteredStrains.count
         }
-        
-        return strains.count
+         return strains.count
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -158,7 +174,6 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StrainsFoldingCell
         
         var strain: Product
@@ -170,7 +185,8 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
             strain = strains[indexPath.row]
         }
         
-        cell.favoritesButton.imageView?.tintColor = strain.isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        guard let isFavorite = strain.isFavorite else { return cell }
+        cell.favoritesButton.imageView?.tintColor = isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         cell.setupFoldingCell(strain: strain)
         
         return cell

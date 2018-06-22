@@ -51,10 +51,12 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     
     func setupFoldingCell(strain: Product) {
         
+        
         self.strain = strain
         
         // Foreground View
-        imageContainer.loadImageUsingUrlString(urlString: strain.src)
+        guard let imageSourceString = strain.src else { return }
+        imageContainer.loadImageUsingUrlString(urlString: imageSourceString)
         imageContainer.contentMode = .scaleToFill
         imageContainer.layer.cornerRadius = 5
         imageContainer.layer.masksToBounds = true
@@ -71,11 +73,13 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         strainTypeLabel.font = UIFont.systemFont(ofSize: 16)
         strainTypeLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         
-        pricePerGramLabel.text = "$\(Int(strain.pricePerGram))/g"
+        guard let pricePerGram = strain.pricePerGram else { return }
+        pricePerGramLabel.text = "$\(Int(pricePerGram))/g"
         pricePerGramLabel.font = UIFont.boldSystemFont(ofSize: 26)
         pricePerGramLabel.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
-        priceOfFiveLabel.text = "5 for $\(Int(strain.priceForFive))"
+        guard let priceFor5 = strain.priceForFive else { return }
+        priceOfFiveLabel.text = "5 for $\(Int(priceFor5))"
         priceOfFiveLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         priceOfFiveLabel.font = UIFont.systemFont(ofSize: 14)
         priceOfFiveLabel.numberOfLines = 3
@@ -212,13 +216,5 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         containerView.layoutIfNeeded()
         
         return containerView
-    }
-    
-    @objc func showStrainInfoView() {
-        print("present info view")
-    }
-    
-    @objc func addToCart() {
-        print("add to cart button pressed")
     }
 }
