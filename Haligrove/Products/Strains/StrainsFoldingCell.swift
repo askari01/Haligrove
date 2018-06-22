@@ -121,7 +121,6 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         let image: UIImage = #imageLiteral(resourceName: "star")
         favoritesButton.setImage(image, for: .normal)
         favoritesButton.addTarget(self, action: #selector(favoritedStrain), for: .touchUpInside)
-    
     }
     
     // TODO: Implement logic for saving favorite strain

@@ -10,12 +10,12 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    // MARK: - Property Declarations
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
     
-    // MARK: - Property Declarations
-    let homeFavoritesCellIdentifier = "favoritesCell"
+    fileprivate let homeFavoritesCellIdentifier = "favoritesCell"
     
     let homeFavoritesLabel: UILabel = {
        let label = UILabel()
@@ -49,6 +49,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     private func homeViewSetup() {
+        
         view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -76,6 +77,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        favoritesCollectionView.reloadData()
+    }
+    
     // MARK: - CollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -87,25 +92,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (containerView.frame.width / 2) - 12 , height: containerView.frame.height * 0.90)
+        let width = (containerView.frame.width - 3 * 8) / 2
+        let height = containerView.frame.height * 0.90
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
+    }
    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
