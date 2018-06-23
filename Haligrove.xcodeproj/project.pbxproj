@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110C5DE920DDC017007D85FB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */; };
+		110C5DEB20DDDCEF007D85FB /* MainTabBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */; };
 		111BE6A020CC58AC00AD0DFB /* StrainsFoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */; };
 		111BE6A220CC72DF00AD0DFB /* StrainsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */; };
 		113125F620CEE6330073E04B /* TableView+Animation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabBar+Extension.swift"; sourceTree = "<group>"; };
 		111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsFoldingCell.swift; sourceTree = "<group>"; };
 		111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StrainsViewController+Extension.swift"; sourceTree = "<group>"; };
 		113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Animation+Extension.swift"; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */,
 				113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */,
 				11842EF220D0BF4C00B925A3 /* Toggle+Extension.swift */,
+				110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */,
+				110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -365,6 +371,8 @@
 				1147747320CB3EFA005BF2EB /* ProductsTableViewController.swift in Sources */,
 				113125F620CEE6330073E04B /* TableView+Animation+Extension.swift in Sources */,
 				11842EF320D0BF4C00B925A3 /* Toggle+Extension.swift in Sources */,
+				110C5DE920DDC017007D85FB /* UserDefaults+Extension.swift in Sources */,
+				110C5DEB20DDDCEF007D85FB /* MainTabBar+Extension.swift in Sources */,
 				11E7FAB820DC0E8E0053B9F7 /* FavoritesCell.swift in Sources */,
 				11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */,
 				1147748320CB680B005BF2EB /* EdiblesViewController.swift in Sources */,

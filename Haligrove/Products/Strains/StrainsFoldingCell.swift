@@ -37,6 +37,7 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         containerView = createContainerView()
         foregroundView = createForegroundView()
         commonInit()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

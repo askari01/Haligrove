@@ -38,6 +38,16 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // TODO: - favoritesbutton is not changing when deleted from HomeViewController
+        // An if check should work
+        ApiService.shared.fetchJson(from: urlString) { [weak self](data: [Product]) in
+            self?.strains = data
+        }
+        strainsTableView.reloadData()
+    }
+    
     // MARK: - Class Methods
     func setupTableView() {
         navigationItem.title = "Strains"
@@ -140,20 +150,26 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    let favoriteKey = "favoriteKey"
-    
     func removeFromFavorites(_ strain: Product) {
-        print("removing \(strain.name ?? "") from favorites")
+        UserDefaults.standard.deleteProduct(product: strain)
     }
     
     func addToFavorites(_ strain: Product) {
-        print("adding \(strain.name ?? "") to favorites")
-        let data = NSKeyedArchiver.archivedData(withRootObject: strain)
-        UserDefaults.standard.set(data, forKey: favoriteKey)
         
-        // get data from UserDefaults
-//        guard let favoriteData = UserDefaults.standard.data(forKey: favoriteKey) else { return }
-//        let favoritedStrain = NSKeyedUnarchiver.unarchiveObject(with: favoriteData) as? Product
+        var listOfProducts = UserDefaults.standard.savedProducts()
+        listOfProducts.append(strain)
+        let data = NSKeyedArchiver.archivedData(withRootObject: listOfProducts)
+        UserDefaults.standard.set(data, forKey: UserDefaults.favoriteKey)
+        showBadgeHighlight()
+        
+        listOfProducts.forEach { (product) in
+            print(product.name ?? "")
+        }
+    }
+    
+    fileprivate func showBadgeHighlight() {
+        UIApplication.mainTabBarController()?.viewControllers?[0].tabBarItem.badgeColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+        UIApplication.mainTabBarController()?.viewControllers?[0].tabBarItem.badgeValue = "new"
     }
     
     // MARK: - TableViewDataSource
@@ -185,6 +201,19 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
             strain = strains[indexPath.row]
         }
         
+        let savedProducts = UserDefaults.standard.savedProducts()
+        let hasFavorited = savedProducts.index(where: { $0.name == strain.name && $0.src == strain.src }) != nil
+        
+        
+        
+        if hasFavorited {
+            cell.favoritesButton.imageView?.tintColor = .orange
+            strain.isFavorite = true
+        }
+        
+        
+            
+
         guard let isFavorite = strain.isFavorite else { return cell }
         cell.favoritesButton.imageView?.tintColor = isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         cell.setupFoldingCell(strain: strain)

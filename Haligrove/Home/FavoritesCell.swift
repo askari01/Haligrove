@@ -17,6 +17,16 @@ class FavoritesCell: UICollectionViewCell {
     var typeLabel = UILabel()
     var for5Label = UILabel()
     
+    var product: Product! {
+        didSet {
+            cellImageView.loadImageUsingUrlString(urlString: product.src ?? "")
+            nameLabel.text = product.name
+            singlePrice.text = "$\(Int(product.pricePerGram ?? 0.00))"
+            typeLabel.text = "\(product.type ?? product.category ?? "")"
+            for5Label.text = "5 for $\(Int(product.priceForFive ?? 0.00))"
+        }
+    }
+    
     // MARK: - Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
