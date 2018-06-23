@@ -26,29 +26,22 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     let reuseIdentifier = "strainCell"
     let urlString = "http://app.haligrove.com/strainData.json"
     
-    // MARK: - ViewDidLoad
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setup()
-        ApiService.shared.fetchJson(from: urlString) { [weak self] (data: [Product]) in
-            self?.strains = data
-            self?.activityIndicator.stopAnimating()
-            self?.strainsTableView.reloadWithAnimation()
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // TODO: - favoritesbutton is not changing when deleted from HomeViewController
-        // An if check should work
-        ApiService.shared.fetchJson(from: urlString) { [weak self](data: [Product]) in
-            self?.strains = data
-        }
-        strainsTableView.reloadData()
     }
     
     // MARK: - Class Methods
+    override func viewWillAppear(_ animated: Bool) {
+        ApiService.shared.fetchJson(from: urlString) { [weak self] (data: [Product]) in
+            self?.strains = data
+            self?.activityIndicator.stopAnimating()
+            self?.strainsTableView.reloadData()
+        }
+    }
+    
     func setupTableView() {
         navigationItem.title = "Strains"
         searchController.searchResultsUpdater = self
@@ -97,9 +90,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 guard let name = strain.name else { return false }
                 return doesCategoryMatch && name.lowercased().contains(searchText.lowercased())
             }
-            
         })
-        
         strainsTableView.reloadData()
     }
     
@@ -204,16 +195,11 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let savedProducts = UserDefaults.standard.savedProducts()
         let hasFavorited = savedProducts.index(where: { $0.name == strain.name && $0.src == strain.src }) != nil
         
-        
-        
         if hasFavorited {
             cell.favoritesButton.imageView?.tintColor = .orange
             strain.isFavorite = true
         }
         
-        
-            
-
         guard let isFavorite = strain.isFavorite else { return cell }
         cell.favoritesButton.imageView?.tintColor = isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         cell.setupFoldingCell(strain: strain)

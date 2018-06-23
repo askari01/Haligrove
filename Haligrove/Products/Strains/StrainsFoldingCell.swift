@@ -37,7 +37,6 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         containerView = createContainerView()
         foregroundView = createForegroundView()
         commonInit()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,7 +50,6 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     }
     
     func setupFoldingCell(strain: Product) {
-        
         
         self.strain = strain
         
