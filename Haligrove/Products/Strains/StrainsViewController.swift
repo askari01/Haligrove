@@ -11,6 +11,10 @@ import UIKit
 class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StrainsViewControllerDelegate {
     
     // MARK: - Property Declarations
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
     var strainsTableView: UITableView!
@@ -35,6 +39,8 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - Class Methods
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
         ApiService.shared.fetchJson(from: urlString) { [weak self] (data: [Product]) in
             self?.strains = data
             self?.activityIndicator.stopAnimating()
