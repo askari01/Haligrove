@@ -50,19 +50,15 @@ class FavoritesCell: UICollectionViewCell {
         cellImageView.layer.masksToBounds = true
         cellImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        nameLabel.text = "Blue Dream"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
         nameLabel.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
-        singlePrice.text = "$10"
         singlePrice.font = UIFont.systemFont(ofSize: 18)
         singlePrice.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
-        typeLabel.text = "indica"
         typeLabel.font = UIFont.systemFont(ofSize: 16)
         typeLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
-        for5Label.text = "5 for $50"
         for5Label.font = UIFont.systemFont(ofSize: 14)
         for5Label.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     }

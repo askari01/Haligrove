@@ -27,7 +27,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     var itemHeight: [CGFloat] = []
     
     let searchController = UISearchController(searchResultsController: nil)
-    let reuseIdentifier = "strainCell"
+    var reuseIdentifier = "strainCell"
     let urlString = "http://app.haligrove.com/strainData.json"
     
     // MARK: - viewDidLoad
@@ -51,7 +51,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func setupTableView() {
         navigationItem.title = "Strains"
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
+     searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.tintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         searchController.searchBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         navigationItem.searchController = searchController
@@ -74,7 +74,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         
-        strainsTableView.anchor(top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        strainsTableView.anchor(top: view.safeAreaLayoutGuide.topAnchor, right: view.safeAreaLayoutGuide.rightAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
     }
     
     private func setup() {
@@ -187,7 +187,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StrainsFoldingCell
+        let cell = strainsTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StrainsFoldingCell
         
         var strain: Product
         cell.delegate = self

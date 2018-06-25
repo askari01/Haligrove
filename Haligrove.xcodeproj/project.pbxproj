@@ -11,6 +11,7 @@
 		110C5DEB20DDDCEF007D85FB /* MainTabBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */; };
 		111BE6A020CC58AC00AD0DFB /* StrainsFoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */; };
 		111BE6A220CC72DF00AD0DFB /* StrainsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */; };
+		111D428E20E09D5D00F460C9 /* HashCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111D428D20E09D5D00F460C9 /* HashCell.swift */; };
 		113125F620CEE6330073E04B /* TableView+Animation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */; };
 		11349C4320C86208008CB439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11349C4220C86208008CB439 /* AppDelegate.swift */; };
 		11349C4520C86208008CB439 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11349C4420C86208008CB439 /* MainTabBarController.swift */; };
@@ -40,6 +41,7 @@
 		110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabBar+Extension.swift"; sourceTree = "<group>"; };
 		111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsFoldingCell.swift; sourceTree = "<group>"; };
 		111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StrainsViewController+Extension.swift"; sourceTree = "<group>"; };
+		111D428D20E09D5D00F460C9 /* HashCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashCell.swift; sourceTree = "<group>"; };
 		113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Animation+Extension.swift"; sourceTree = "<group>"; };
 		11349C3F20C86208008CB439 /* Haligrove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haligrove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11349C4220C86208008CB439 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				1147747C20CB6784005BF2EB /* HashViewController.swift */,
+				111D428D20E09D5D00F460C9 /* HashCell.swift */,
 			);
 			path = Hash;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				11349C6120C8D095008CB439 /* Product.swift in Sources */,
 				11349C5A20C89557008CB439 /* Anchor+Extension.swift in Sources */,
 				11349C5620C867D0008CB439 /* HomeViewController.swift in Sources */,
+				111D428E20E09D5D00F460C9 /* HashCell.swift in Sources */,
 				11349C4320C86208008CB439 /* AppDelegate.swift in Sources */,
 				1147748620CB6844005BF2EB /* ParaphernaliaViewController.swift in Sources */,
 				11633DEE20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift in Sources */,
