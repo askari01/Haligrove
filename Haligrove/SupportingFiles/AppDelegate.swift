@@ -24,11 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
              UINavigationBar.appearance().prefersLargeTitles = true
             UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.gray]
              UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.gray]
-            
         } else {
             // for default navigation bar title color
             UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.gray]
-            
         }
         
         let navStyles = UINavigationBar.appearance()

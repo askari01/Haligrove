@@ -17,7 +17,6 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-    
     var strainsTableView: UITableView!
     var strains = [Product]()
     var filteredStrains = [Product]()
@@ -124,7 +123,6 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - Delegate Methods
     func didTapStrainFavoritesButton(in cell: StrainsFoldingCell) {
-        
         guard let indexTapped = strainsTableView.indexPath(for: cell) else { return }
         var thisStrain = strains[indexTapped.row]
         if isFiltering() {
@@ -153,13 +151,11 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func addToFavorites(_ strain: Product) {
-        
         var listOfProducts = UserDefaults.standard.savedProducts()
         listOfProducts.append(strain)
         let data = NSKeyedArchiver.archivedData(withRootObject: listOfProducts)
         UserDefaults.standard.set(data, forKey: UserDefaults.favoriteKey)
         showBadgeHighlight()
-        
         listOfProducts.forEach { (product) in
             print(product.name ?? "")
         }
@@ -189,28 +185,22 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = strainsTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StrainsFoldingCell
-        
         var strain: Product
         cell.delegate = self
-        
         if isFiltering() {
             strain = filteredStrains[indexPath.row]
         } else {
             strain = strains[indexPath.row]
         }
-        
         let savedProducts = UserDefaults.standard.savedProducts()
         let hasFavorited = savedProducts.index(where: { $0.name == strain.name && $0.src == strain.src }) != nil
-        
         if hasFavorited {
             cell.favoritesButton.imageView?.tintColor = .orange
             strain.isFavorite = true
         }
-        
         guard let isFavorite = strain.isFavorite else { return cell }
         cell.favoritesButton.imageView?.tintColor = isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         cell.setupFoldingCell(strain: strain)
-        
         return cell
     }
     
@@ -220,11 +210,9 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! StrainsFoldingCell
-        
         if cell.isAnimating() {
             return
         }
-        
         var duration = 0.0
         if itemHeight[indexPath.row] == closeHeight {
             itemHeight[indexPath.row] = openHeight
@@ -235,7 +223,6 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.unfold(false, animated: true, completion: nil)
             duration = 1.1
         }
-        
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
             tableView.beginUpdates()
             tableView.endUpdates()

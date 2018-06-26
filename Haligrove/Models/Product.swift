@@ -67,6 +67,5 @@ class Product: NSObject, Decodable, NSCoding {
     var appetite: Int?
     var overall: Int?
     var soldOut: String?
-    
     var isFavorite: Bool?
 }

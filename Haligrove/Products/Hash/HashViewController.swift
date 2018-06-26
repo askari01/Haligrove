@@ -9,9 +9,9 @@
 import UIKit
 import FoldingCell
 
+
+
 class HashViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HashFavoriteDelegate {
-    
-    
     
     // MARK: - Property Declarations
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
@@ -54,7 +54,6 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
         hashTableView.delegate = self
         hashTableView.separatorStyle = .none
         self.view.addSubview(hashTableView)
-        
         self.view.addSubview(activityIndicator)
         self.view.bringSubview(toFront: activityIndicator)
         activityIndicator.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -75,14 +74,9 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     func didTapHashFavoritesButton(in cell: HashCell) {
         guard let indexTapped = hashTableView.indexPath(for: cell) else { return }
         let thisProduct = hashProducts[indexTapped.row]
-        
         guard let hasFavorited = thisProduct.isFavorite else { return }
-       
-        
-        
         hasFavorited ? removeFromFavorites(thisProduct) : addToFavorites(thisProduct)
         cell.favoritesButton.imageView?.tintColor = hasFavorited ?  #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : .orange
-    
         hashProducts[indexTapped.row].isFavorite = !hasFavorited
     }
     
@@ -92,13 +86,11 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func addToFavorites(_ product: Product) {
-        
         var listOfProducts = UserDefaults.standard.savedProducts()
         listOfProducts.append(product)
         let data = NSKeyedArchiver.archivedData(withRootObject: listOfProducts)
         UserDefaults.standard.set(data, forKey: UserDefaults.favoriteKey)
         showBadgeHighlight()
-        
         listOfProducts.forEach { (product) in
             print(product.name ?? "")
         }
@@ -109,8 +101,6 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
         UIApplication.mainTabBarController()?.viewControllers?[0].tabBarItem.badgeValue = "new"
     }
 
-
-    
     // MARK: - TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return hashProducts.count
@@ -118,23 +108,18 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = hashTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! HashCell
-        
         var hash: Product
         cell.delegate = self
-        
         hash = hashProducts[indexPath.row]
-        
         let savedProducts = UserDefaults.standard.savedProducts()
         let hasFavorited = savedProducts.index(where: { $0.name == hash.name && $0.src == hash.src }) != nil
         if hasFavorited {
             cell.favoritesButton.imageView?.tintColor = .orange
             hash.isFavorite = true
         }
-        
         guard let isFavorite = hash.isFavorite else { return cell }
         cell.favoritesButton.imageView?.tintColor = isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         cell.setupFoldingCell(product: hash)
-        
         return cell
     }
     
@@ -144,11 +129,9 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! HashCell
-        
         if cell.isAnimating() {
             return
         }
-        
         var duration = 0.0
         if itemHeight[indexPath.row] == closeHeight {
             itemHeight[indexPath.row] = openHeight
@@ -167,6 +150,7 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 }
 
+// MARK: - Protocols
 protocol HashFavoriteDelegate {
     func didTapHashFavoritesButton(in cell: HashCell)
 }

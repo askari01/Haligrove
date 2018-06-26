@@ -31,7 +31,6 @@
 		1147748620CB6844005BF2EB /* ParaphernaliaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */; };
 		11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DEB20C9E86B00C35055 /* ApiService.swift */; };
 		11633DEE20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DED20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift */; };
-		11842EF320D0BF4C00B925A3 /* Toggle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11842EF220D0BF4C00B925A3 /* Toggle+Extension.swift */; };
 		11E7FAB820DC0E8E0053B9F7 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7FAB720DC0E8E0053B9F7 /* FavoritesCell.swift */; };
 		96092585EC6CA7E6F64A4ACC /* Pods_Haligrove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E838030C5B9ECC13DC62D8 /* Pods_Haligrove.framework */; };
 /* End PBXBuildFile section */
@@ -63,7 +62,6 @@
 		1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaphernaliaViewController.swift; sourceTree = "<group>"; };
 		11633DEB20C9E86B00C35055 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		11633DED20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoadImageFromUrl+Cache+Extension.swift"; sourceTree = "<group>"; };
-		11842EF220D0BF4C00B925A3 /* Toggle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toggle+Extension.swift"; sourceTree = "<group>"; };
 		11E7FAB720DC0E8E0053B9F7 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		98E838030C5B9ECC13DC62D8 /* Pods_Haligrove.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Haligrove.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		990CE994EF076436E5B143F2 /* Pods-Haligrove.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Haligrove.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Haligrove/Pods-Haligrove.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 				11633DED20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift */,
 				111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */,
 				113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */,
-				11842EF220D0BF4C00B925A3 /* Toggle+Extension.swift */,
 				110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */,
 				110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */,
 			);
@@ -374,7 +371,6 @@
 				11633DEE20CA117700C35055 /* LoadImageFromUrl+Cache+Extension.swift in Sources */,
 				1147747320CB3EFA005BF2EB /* ProductsTableViewController.swift in Sources */,
 				113125F620CEE6330073E04B /* TableView+Animation+Extension.swift in Sources */,
-				11842EF320D0BF4C00B925A3 /* Toggle+Extension.swift in Sources */,
 				110C5DE920DDC017007D85FB /* UserDefaults+Extension.swift in Sources */,
 				110C5DEB20DDDCEF007D85FB /* MainTabBar+Extension.swift in Sources */,
 				11E7FAB820DC0E8E0053B9F7 /* FavoritesCell.swift in Sources */,

@@ -50,7 +50,6 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     }
     
     func setupFoldingCell(strain: Product) {
-        
         self.strain = strain
         
         // Foreground View
@@ -132,7 +131,6 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     }
     
     func createForegroundView() -> RotatedView {
-        
         let foregroundView = RotatedView(frame: .zero)
         foregroundView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         foregroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -185,35 +183,26 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         let top = (foregroundView.easy.layout([Top(8)])).first
         top?.identifier = "ForegroundViewTop"
         self.foregroundViewTop = top
-        
         foregroundView.layoutIfNeeded()
-        
         return foregroundView
     }
 
     
     private func createContainerView() -> UIView {
-        
         let containerView = UIView(frame: .zero)
         containerView.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        
         itemCount = 3
- 
         contentView.addSubview(containerView)
-
         containerView.easy.layout([
             Height(CGFloat(120 * itemCount)),
             Left(8),
             Right(8),
             ])
-        
         let top = (containerView.easy.layout([Top(8)])).first
         top?.identifier = "ContainerViewTop"
         self.containerViewTop = top
-        
         containerView.layoutIfNeeded()
-        
         return containerView
     }
 }

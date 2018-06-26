@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIApplication {
+    // To Set Badge items
     static func mainTabBarController() -> MainTabBarController? {
         return shared.keyWindow?.rootViewController as? MainTabBarController
     }
