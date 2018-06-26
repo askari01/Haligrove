@@ -14,7 +14,7 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     
     // MARK: - Property Declarations
     var strain: Product?
-    weak var delegate: StrainsViewControllerDelegate?
+    weak var delegate: StrainFavoriteDelegate?
     
     // foreground cell UI Items
     var imageContainer = UIImageView()
@@ -128,7 +128,7 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     
     // TODO: Implement logic for saving favorite strain
     @objc func favoritedStrain() {
-        delegate?.didTapFavoritesButton(in: self)
+        delegate?.didTapStrainFavoritesButton(in: self)
     }
     
     func createForegroundView() -> RotatedView {

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FoldingCell
 
-class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StrainsViewControllerDelegate {
+class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StrainFavoriteDelegate {
     
     // MARK: - Property Declarations
     override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -122,7 +123,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     // MARK: - Delegate Methods
-    func didTapFavoritesButton(in cell: StrainsFoldingCell) {
+    func didTapStrainFavoritesButton(in cell: StrainsFoldingCell) {
         
         guard let indexTapped = strainsTableView.indexPath(for: cell) else { return }
         var thisStrain = strains[indexTapped.row]
@@ -243,6 +244,6 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
 }
 
 // MARK: - Protocols
-protocol StrainsViewControllerDelegate: class {
-    func didTapFavoritesButton(in cell: StrainsFoldingCell)
+protocol StrainFavoriteDelegate: class {
+    func didTapStrainFavoritesButton(in cell: StrainsFoldingCell)
 }

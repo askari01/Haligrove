@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import FoldingCell
 
-class HashViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StrainsViewControllerDelegate {
+class HashViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HashFavoriteDelegate {
+    
+    
     
     // MARK: - Property Declarations
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
@@ -28,6 +31,7 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHashTableView()
+        setup()
     }
     
     // MARK: - Class Methods
@@ -44,7 +48,7 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     func setupHashTableView() {
         navigationItem.title = "Hash"
         hashTableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .plain)
-        hashTableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        hashTableView.register(HashCell.self, forCellReuseIdentifier: reuseIdentifier)
         hashTableView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         hashTableView.dataSource = self
         hashTableView.delegate = self
@@ -68,7 +72,7 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: - Delegate Methods
-    func didTapFavoritesButton(in cell: StrainsFoldingCell) {
+    func didTapHashFavoritesButton(in cell: HashCell) {
         guard let indexTapped = hashTableView.indexPath(for: cell) else { return }
         let thisProduct = hashProducts[indexTapped.row]
         
@@ -83,14 +87,14 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 
-func removeFromFavorites(_ strain: Product) {
-    UserDefaults.standard.deleteProduct(product: strain)
-}
+    func removeFromFavorites(_ product: Product) {
+        UserDefaults.standard.deleteProduct(product: product)
+    }
 
-    func addToFavorites(_ strain: Product) {
+    func addToFavorites(_ product: Product) {
         
         var listOfProducts = UserDefaults.standard.savedProducts()
-        listOfProducts.append(strain)
+        listOfProducts.append(product)
         let data = NSKeyedArchiver.archivedData(withRootObject: listOfProducts)
         UserDefaults.standard.set(data, forKey: UserDefaults.favoriteKey)
         showBadgeHighlight()
@@ -109,12 +113,62 @@ func removeFromFavorites(_ strain: Product) {
     
     // MARK: - TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return hashProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = hashTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = .red
+        let cell = hashTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! HashCell
+        
+        var hash: Product
+        cell.delegate = self
+        
+        hash = hashProducts[indexPath.row]
+        
+        let savedProducts = UserDefaults.standard.savedProducts()
+        let hasFavorited = savedProducts.index(where: { $0.name == hash.name && $0.src == hash.src }) != nil
+        if hasFavorited {
+            cell.favoritesButton.imageView?.tintColor = .orange
+            hash.isFavorite = true
+        }
+        
+        guard let isFavorite = hash.isFavorite else { return cell }
+        cell.favoritesButton.imageView?.tintColor = isFavorite ? .orange : #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        cell.setupFoldingCell(product: hash)
+        
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return itemHeight[indexPath.row]
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! HashCell
+        
+        if cell.isAnimating() {
+            return
+        }
+        
+        var duration = 0.0
+        if itemHeight[indexPath.row] == closeHeight {
+            itemHeight[indexPath.row] = openHeight
+            cell.unfold(true, animated: true, completion: nil)
+            duration = 0.5
+        } else {
+            itemHeight[indexPath.row] = closeHeight
+            cell.unfold(false, animated: true, completion: nil)
+            duration = 1.1
+        }
+        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }, completion: nil)
+    }
 }
+
+protocol HashFavoriteDelegate {
+    func didTapHashFavoritesButton(in cell: HashCell)
+}
+
+

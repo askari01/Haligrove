@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import FoldingCell
 
-class HashCell: UITableViewCell {
+class HashCell: FoldingCell {
+    
+    var favoritesButton = UIButton(type: .custom)
+    var delegate: HashFavoriteDelegate?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -16,6 +20,17 @@ class HashCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupFoldingCell(product: Product) {
+        backgroundColor = .black
+        let image: UIImage = #imageLiteral(resourceName: "star")
+        favoritesButton.setImage(image, for: .normal)
+        favoritesButton.addTarget(self, action: #selector(favoritedProduct), for: .touchUpInside)
+    }
+    
+    @objc func favoritedProduct() {
+        delegate?.didTapHashFavoritesButton(in: self)
     }
     
 }
