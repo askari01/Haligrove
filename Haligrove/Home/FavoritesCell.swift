@@ -11,7 +11,7 @@ import UIKit
 class FavoritesCell: UICollectionViewCell {
     
     // MARK: - Property Declarations
-    var cellImageView = UIImageView(image: #imageLiteral(resourceName: "defaultStrainImage"))
+    var cellImageView = CustomCacheImageView(image: #imageLiteral(resourceName: "defaultStrainImage"))
     var nameLabel = UILabel()
     var singlePrice = UILabel()
     var typeLabel = UILabel()
@@ -40,35 +40,28 @@ class FavoritesCell: UICollectionViewCell {
     
     // MARK: - Cell Methods
     private func setupCell() {
-        
         self.layer.cornerRadius = 15
         self.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        
         cellImageView.contentMode = .scaleToFill
         cellImageView.layer.cornerRadius = 15
         cellImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         cellImageView.layer.masksToBounds = true
         cellImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        nameLabel.text = "Blue Dream"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
         nameLabel.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
-        singlePrice.text = "$10"
         singlePrice.font = UIFont.systemFont(ofSize: 18)
         singlePrice.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
-        typeLabel.text = "indica"
         typeLabel.font = UIFont.systemFont(ofSize: 16)
         typeLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
-        for5Label.text = "5 for $50"
         for5Label.font = UIFont.systemFont(ofSize: 14)
         for5Label.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     }
     
     private func layoutViews() {
-        
         addSubview(cellImageView)
         cellImageView.anchor(top: topAnchor, right: rightAnchor, bottom: nil, left: leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
         cellImageView.heightAnchor.constraint(equalTo: cellImageView.widthAnchor).isActive = true

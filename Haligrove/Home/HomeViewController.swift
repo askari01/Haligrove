@@ -60,17 +60,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // MARK: - Class Methods
     private func homeViewSetup() {
-        
         view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         navigationController?.navigationBar.tintColor = .gray
         navigationController?.navigationBar.barStyle = .black
-        
         favoritesCollectionView.register(FavoritesCell.self, forCellWithReuseIdentifier: homeFavoritesCellIdentifier)
         favoritesCollectionView.delegate = self
         favoritesCollectionView.dataSource = self
-        
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         favoritesCollectionView.addGestureRecognizer(gesture)
     }
@@ -78,23 +75,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
         let location = gesture.location(in: favoritesCollectionView)
         guard let selectedIndexPath = favoritesCollectionView.indexPathForItem(at: location) else { return }
-        
         let alertController = UIAlertController(title: "Remove Product from Favorites?", message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
             let selectedProduct = self.favoritedProducts[selectedIndexPath.item]
             self.favoritedProducts.remove(at: selectedIndexPath.item)
             self.favoritesCollectionView.deleteItems(at: [selectedIndexPath])
             UserDefaults.standard.deleteProduct(product: selectedProduct)
-            
-            // TODO: - Get favoritesButton working here
-            
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(alertController, animated: true)
     }
     
     private func layoutViews() {
-        
         // Favorites Label
         view.addSubview(homeFavoritesLabel)
         homeFavoritesLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, right: view.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: view.safeAreaLayoutGuide.leftAnchor, paddingTop: 12, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 50)
@@ -105,7 +97,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         containerView.addSubview(favoritesCollectionView)
         favoritesCollectionView.anchor(top: containerView.safeAreaLayoutGuide.topAnchor, right: containerView.safeAreaLayoutGuide.rightAnchor, bottom: containerView.safeAreaLayoutGuide.bottomAnchor, left: containerView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
-        
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -119,9 +110,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = favoritesCollectionView.dequeueReusableCell(withReuseIdentifier: homeFavoritesCellIdentifier, for: indexPath) as! FavoritesCell
-        
         cell.product = self.favoritedProducts[indexPath.item]
-        
         return cell
     }
     

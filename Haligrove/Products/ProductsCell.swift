@@ -19,7 +19,6 @@ class ProductsCell: UITableViewCell {
         view.layer.shadowColor = #colorLiteral(red: 0.07843137255, green: 0.06666666667, blue: 0.05098039216, alpha: 1)
         view.layer.shadowOpacity = 0.6
         view.layer.shadowRadius = 1
-        
         return view
     }()
     

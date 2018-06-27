@@ -37,10 +37,8 @@ class ProductsTableViewController: UITableViewController {
     }
     
     fileprivate func setupTableView() {
-        
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         navigationController?.navigationBar.barStyle = .black
-        
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         tableView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -63,20 +61,16 @@ class ProductsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductsTableView", for: indexPath) as! ProductsCell
-        
         guard let image = products[indexPath.row].image else { return cell }
         cell.productImageView.image = UIImage(named: image)?.withRenderingMode(.alwaysTemplate)
         cell.productLabel.text = products[indexPath.row].title
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = products[indexPath.row]
-        
         if selectedCell.title == "Strains" {
             let strainsController = StrainsViewController()
-            
             self.navigationController?.pushViewController(strainsController, animated: true)
         }
         

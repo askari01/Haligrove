@@ -14,12 +14,10 @@ class ApiService {
     
     // Fetch Strains from url
     func fetchJson<T: Decodable>(from urlString: String, completion: @escaping ([T]) -> ()) {
-        
         guard let url = URL(string: urlString) else { return }
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         config.urlCache = nil
-
         URLSession(configuration: config).dataTask(with: url) { (data, res, err) in
             DispatchQueue.main.async {
                 if let err = err {
@@ -35,7 +33,6 @@ class ApiService {
                     print("Failed: ", jsonErr)
                 }
             }
-
-            }.resume()
+        }.resume()
     }
 }
