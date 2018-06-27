@@ -151,7 +151,7 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
 }
 
 // MARK: - Protocols
-protocol HashFavoriteDelegate {
+protocol HashFavoriteDelegate: class {
     func didTapHashFavoritesButton(in cell: HashCell)
 }
 

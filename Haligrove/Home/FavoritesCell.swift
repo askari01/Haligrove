@@ -11,7 +11,7 @@ import UIKit
 class FavoritesCell: UICollectionViewCell {
     
     // MARK: - Property Declarations
-    var cellImageView = UIImageView(image: #imageLiteral(resourceName: "defaultStrainImage"))
+    var cellImageView = CustomCacheImageView(image: #imageLiteral(resourceName: "defaultStrainImage"))
     var nameLabel = UILabel()
     var singlePrice = UILabel()
     var typeLabel = UILabel()

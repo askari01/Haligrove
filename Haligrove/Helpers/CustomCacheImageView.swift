@@ -10,9 +10,12 @@ import UIKit
 
 let imageCache = NSCache<AnyObject, UIImage>()
 
-extension UIImageView {
+class CustomCacheImageView: UIImageView {
+    
+    var imageUrlString: String?
     
     func loadImageUsingUrlString(urlString: String) {
+        imageUrlString = urlString
         guard let url = URL(string: urlString) else { return }
         image = nil
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) {
@@ -27,8 +30,11 @@ extension UIImageView {
             DispatchQueue.main.async {
                 guard let data = data else { return }
                 guard let imageToCache = UIImage(data: data) else { return }
+                if self.imageUrlString == urlString {
+                   self.image = imageToCache
+                }
                 imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
-                self.image = imageToCache
+                
             }
         }.resume()
     }

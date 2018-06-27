@@ -17,17 +17,18 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
     weak var delegate: StrainFavoriteDelegate?
     
     // foreground cell UI Items
-    var imageContainer = UIImageView()
+    var imageContainer = CustomCacheImageView()
     var strainNameLabel = UILabel()
     var strainTypeLabel = UILabel()
     var pricePerGramLabel = UILabel()
     var priceOfFiveLabel = UILabel()
-    var inventoryBar = UIImageView()
+    var inventoryBar = CustomCacheImageView()
     var saleLabel = UILabel()
     var newLabel = UILabel()
     var favoritesButton = UIButton(type: .custom)
     var isFavorite: Bool?
     
+    // TODO: - ContainerView
     // ContainerView UI Items
     
     // MARK: - Initializers
@@ -80,20 +81,35 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         priceOfFiveLabel.text = "5 for $\(Int(priceFor5))"
         priceOfFiveLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         priceOfFiveLabel.font = UIFont.systemFont(ofSize: 14)
-        priceOfFiveLabel.numberOfLines = 3
         
+        
+//        if strain.inventory == "full" {
+//            inventoryBar.image = #imageLiteral(resourceName: "full")
+//        }
+//        if strain.inventory == "threeQuarters" {
+//            inventoryBar.image = #imageLiteral(resourceName: "threeQuarters")
+//        }
+//        if strain.inventory == "med" {
+//            inventoryBar.image = #imageLiteral(resourceName: "half")
+//        }
+//        if strain.inventory == "low" {
+//            inventoryBar.image = #imageLiteral(resourceName: "oneQuarter")
+//        }
         inventoryBar.contentMode = .scaleToFill
-        if strain.inventory == "full" {
+        let inventory = strain.inventory
+        switch inventory {
+        case "full":
             inventoryBar.image = #imageLiteral(resourceName: "full")
-        }
-        if strain.inventory == "threeQuarters" {
+        case "threeQuarters":
             inventoryBar.image = #imageLiteral(resourceName: "threeQuarters")
-        }
-        if strain.inventory == "med" {
+        case "med":
             inventoryBar.image = #imageLiteral(resourceName: "half")
-        }
-        if strain.inventory == "low" {
+        case "low":
             inventoryBar.image = #imageLiteral(resourceName: "oneQuarter")
+        case "empty":
+            inventoryBar.image = #imageLiteral(resourceName: "empty")
+        default:
+            inventoryBar.image = #imageLiteral(resourceName: "full")
         }
         
         saleLabel.font = UIFont.boldSystemFont(ofSize: 14)
@@ -125,7 +141,6 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         favoritesButton.addTarget(self, action: #selector(favoritedStrain), for: .touchUpInside)
     }
     
-    // TODO: Implement logic for saving favorite strain
     @objc func favoritedStrain() {
         delegate?.didTapStrainFavoritesButton(in: self)
     }
@@ -187,7 +202,6 @@ class StrainsFoldingCell: FoldingCell, NSCacheDelegate {
         return foregroundView
     }
 
-    
     private func createContainerView() -> UIView {
         let containerView = UIView(frame: .zero)
         containerView.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
