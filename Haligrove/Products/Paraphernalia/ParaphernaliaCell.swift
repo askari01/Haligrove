@@ -173,7 +173,7 @@ class ParaphernaliaCell: FoldingCell, NSCacheDelegate {
         
         newLabel.anchor(top: typeLabel.topAnchor, right: nil, bottom: typeLabel.bottomAnchor, left: typeLabel.rightAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 8, width: 0, height: 0)
         
-        saleLabel.anchor(top: typeLabel.topAnchor, right: nil, bottom: typeLabel.bottomAnchor, left: newLabel.rightAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 2, width: 0, height: 0)
+        saleLabel.anchor(top: typeLabel.topAnchor, right: nil, bottom: typeLabel.bottomAnchor, left: typeLabel.rightAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 2, width: 0, height: 0)
         
         favoritesButton.anchor(top: productNameLabel.bottomAnchor, right: productNameLabel.rightAnchor, bottom: nil, left: nil, paddingTop: 0, paddingRight: 8, paddingBottom: 0, paddingLeft: 0, width: 30, height: 30)
         
