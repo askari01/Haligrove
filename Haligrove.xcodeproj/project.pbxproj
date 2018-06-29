@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		110C5DE920DDC017007D85FB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */; };
 		110C5DEB20DDDCEF007D85FB /* MainTabBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */; };
-		111BE6A020CC58AC00AD0DFB /* StrainsFoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */; };
-		111BE6A220CC72DF00AD0DFB /* StrainsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */; };
+		111BE6A020CC58AC00AD0DFB /* StrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE69F20CC58AC00AD0DFB /* StrainsCell.swift */; };
+		111BE6A220CC72DF00AD0DFB /* SearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE6A120CC72DF00AD0DFB /* SearchBar+Extension.swift */; };
 		111D428E20E09D5D00F460C9 /* HashCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111D428D20E09D5D00F460C9 /* HashCell.swift */; };
 		113125F620CEE6330073E04B /* TableView+Animation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */; };
 		11349C4320C86208008CB439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11349C4220C86208008CB439 /* AppDelegate.swift */; };
@@ -31,6 +31,7 @@
 		1147748620CB6844005BF2EB /* ParaphernaliaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */; };
 		11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DEB20C9E86B00C35055 /* ApiService.swift */; };
 		11633DEE20CA117700C35055 /* CustomCacheImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DED20CA117700C35055 /* CustomCacheImageView.swift */; };
+		1177566720E570BE00406562 /* ExtractsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1177566620E570BE00406562 /* ExtractsCell.swift */; };
 		11E7FAB820DC0E8E0053B9F7 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7FAB720DC0E8E0053B9F7 /* FavoritesCell.swift */; };
 		96092585EC6CA7E6F64A4ACC /* Pods_Haligrove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E838030C5B9ECC13DC62D8 /* Pods_Haligrove.framework */; };
 /* End PBXBuildFile section */
@@ -38,8 +39,8 @@
 /* Begin PBXFileReference section */
 		110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabBar+Extension.swift"; sourceTree = "<group>"; };
-		111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsFoldingCell.swift; sourceTree = "<group>"; };
-		111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StrainsViewController+Extension.swift"; sourceTree = "<group>"; };
+		111BE69F20CC58AC00AD0DFB /* StrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsCell.swift; sourceTree = "<group>"; };
+		111BE6A120CC72DF00AD0DFB /* SearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+Extension.swift"; sourceTree = "<group>"; };
 		111D428D20E09D5D00F460C9 /* HashCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashCell.swift; sourceTree = "<group>"; };
 		113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Animation+Extension.swift"; sourceTree = "<group>"; };
 		11349C3F20C86208008CB439 /* Haligrove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haligrove.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +63,7 @@
 		1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaphernaliaViewController.swift; sourceTree = "<group>"; };
 		11633DEB20C9E86B00C35055 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		11633DED20CA117700C35055 /* CustomCacheImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCacheImageView.swift; sourceTree = "<group>"; };
+		1177566620E570BE00406562 /* ExtractsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractsCell.swift; sourceTree = "<group>"; };
 		11E7FAB720DC0E8E0053B9F7 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		98E838030C5B9ECC13DC62D8 /* Pods_Haligrove.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Haligrove.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		990CE994EF076436E5B143F2 /* Pods-Haligrove.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Haligrove.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Haligrove/Pods-Haligrove.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,7 +131,7 @@
 			children = (
 				11349C5920C89557008CB439 /* Anchor+Extension.swift */,
 				11633DED20CA117700C35055 /* CustomCacheImageView.swift */,
-				111BE6A120CC72DF00AD0DFB /* StrainsViewController+Extension.swift */,
+				111BE6A120CC72DF00AD0DFB /* SearchBar+Extension.swift */,
 				113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */,
 				110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */,
 				110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */,
@@ -158,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				1147747920CB673E005BF2EB /* StrainsViewController.swift */,
-				111BE69F20CC58AC00AD0DFB /* StrainsFoldingCell.swift */,
+				111BE69F20CC58AC00AD0DFB /* StrainsCell.swift */,
 			);
 			path = Strains;
 			sourceTree = "<group>";
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				1147747F20CB67BC005BF2EB /* ExtractsViewController.swift */,
+				1177566620E570BE00406562 /* ExtractsCell.swift */,
 			);
 			path = Extracts;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1177566720E570BE00406562 /* ExtractsCell.swift in Sources */,
 				1147748020CB67BC005BF2EB /* ExtractsViewController.swift in Sources */,
 				1147747520CB48D5005BF2EB /* ProductsCell.swift in Sources */,
 				11349C4520C86208008CB439 /* MainTabBarController.swift in Sources */,
@@ -377,9 +381,9 @@
 				11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */,
 				1147748320CB680B005BF2EB /* EdiblesViewController.swift in Sources */,
 				1147747720CB505D005BF2EB /* ExpandedLabel.swift in Sources */,
-				111BE6A020CC58AC00AD0DFB /* StrainsFoldingCell.swift in Sources */,
+				111BE6A020CC58AC00AD0DFB /* StrainsCell.swift in Sources */,
 				1147747A20CB673E005BF2EB /* StrainsViewController.swift in Sources */,
-				111BE6A220CC72DF00AD0DFB /* StrainsViewController+Extension.swift in Sources */,
+				111BE6A220CC72DF00AD0DFB /* SearchBar+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

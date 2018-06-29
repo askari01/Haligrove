@@ -106,6 +106,15 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
         return hashProducts.count
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard case let cell as HashCell = cell else { return }
+        if itemHeight[indexPath.row] == closeHeight {
+            cell.unfold(false, animated: false, completion: nil)
+        } else {
+            cell.unfold(true, animated: false, completion: nil)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = hashTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! HashCell
         var hash: Product

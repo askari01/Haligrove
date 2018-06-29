@@ -37,7 +37,6 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         setup()
     }
     
-    // MARK: - Class Methods
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
@@ -48,10 +47,11 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    // MARK: - Class Methods
     func setupTableView() {
         navigationItem.title = "Strains"
         searchController.searchResultsUpdater = self
-     searchController.obscuresBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.tintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         searchController.searchBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         navigationItem.searchController = searchController
@@ -60,7 +60,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         searchController.searchBar.delegate = self
         
         strainsTableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .plain)
-        strainsTableView.register(StrainsFoldingCell.self, forCellReuseIdentifier: reuseIdentifier)
+        strainsTableView.register(StrainsCell.self, forCellReuseIdentifier: reuseIdentifier)
         strainsTableView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         strainsTableView.dataSource = self
         strainsTableView.delegate = self
@@ -122,7 +122,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     // MARK: - Delegate Methods
-    func didTapStrainFavoritesButton(in cell: StrainsFoldingCell) {
+    func didTapStrainFavoritesButton(in cell: StrainsCell) {
         guard let indexTapped = strainsTableView.indexPath(for: cell) else { return }
         var thisStrain = strains[indexTapped.row]
         if isFiltering() {
@@ -156,9 +156,6 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let data = NSKeyedArchiver.archivedData(withRootObject: listOfProducts)
         UserDefaults.standard.set(data, forKey: UserDefaults.favoriteKey)
         showBadgeHighlight()
-        listOfProducts.forEach { (product) in
-            print(product.name ?? "")
-        }
     }
     
     fileprivate func showBadgeHighlight() {
@@ -175,7 +172,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard case let cell as StrainsFoldingCell = cell else { return }
+        guard case let cell as StrainsCell = cell else { return }
         if itemHeight[indexPath.row] == closeHeight {
             cell.unfold(false, animated: false, completion: nil)
         } else {
@@ -184,7 +181,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = strainsTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StrainsFoldingCell
+        let cell = strainsTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StrainsCell
         var strain: Product
         cell.delegate = self
         if isFiltering() {
@@ -209,7 +206,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! StrainsFoldingCell
+        let cell = tableView.cellForRow(at: indexPath) as! StrainsCell
         if cell.isAnimating() {
             return
         }
@@ -232,5 +229,5 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 // MARK: - Protocols
 protocol StrainFavoriteDelegate: class {
-    func didTapStrainFavoritesButton(in cell: StrainsFoldingCell)
+    func didTapStrainFavoritesButton(in cell: StrainsCell)
 }
