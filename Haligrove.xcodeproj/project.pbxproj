@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		110573B720E67E72003FED87 /* EdiblesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110573B620E67E72003FED87 /* EdiblesCell.swift */; };
+		110573B920E6BE5C003FED87 /* ParaphernaliaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110573B820E6BE5C003FED87 /* ParaphernaliaCell.swift */; };
 		110C5DE920DDC017007D85FB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */; };
 		110C5DEB20DDDCEF007D85FB /* MainTabBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */; };
 		111BE6A020CC58AC00AD0DFB /* StrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE69F20CC58AC00AD0DFB /* StrainsCell.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		110573B620E67E72003FED87 /* EdiblesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdiblesCell.swift; sourceTree = "<group>"; };
+		110573B820E6BE5C003FED87 /* ParaphernaliaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaphernaliaCell.swift; sourceTree = "<group>"; };
 		110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabBar+Extension.swift"; sourceTree = "<group>"; };
 		111BE69F20CC58AC00AD0DFB /* StrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsCell.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */,
+				110573B820E6BE5C003FED87 /* ParaphernaliaCell.swift */,
 			);
 			path = Paraphernalia;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				1147747320CB3EFA005BF2EB /* ProductsTableViewController.swift in Sources */,
 				113125F620CEE6330073E04B /* TableView+Animation+Extension.swift in Sources */,
 				110C5DE920DDC017007D85FB /* UserDefaults+Extension.swift in Sources */,
+				110573B920E6BE5C003FED87 /* ParaphernaliaCell.swift in Sources */,
 				110C5DEB20DDDCEF007D85FB /* MainTabBar+Extension.swift in Sources */,
 				11E7FAB820DC0E8E0053B9F7 /* FavoritesCell.swift in Sources */,
 				11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */,
