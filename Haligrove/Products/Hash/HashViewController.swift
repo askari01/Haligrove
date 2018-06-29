@@ -91,9 +91,6 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
         let data = NSKeyedArchiver.archivedData(withRootObject: listOfProducts)
         UserDefaults.standard.set(data, forKey: UserDefaults.favoriteKey)
         showBadgeHighlight()
-        listOfProducts.forEach { (product) in
-            print(product.name ?? "")
-        }
     }
     
     fileprivate func showBadgeHighlight() {

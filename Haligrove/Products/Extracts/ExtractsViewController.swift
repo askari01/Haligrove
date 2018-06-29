@@ -161,6 +161,7 @@ class ExtractsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 }
 
+// MARK: - Protocol
 protocol ExtractsFavoriteDelegate: class {
     func didTapExtractFavoritesButton(in cell: ExtractsCell)
 }
