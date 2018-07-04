@@ -7,13 +7,32 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabBarController: UITabBarController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViewControllers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let signOutError {
+//            print("Failed to sign out: ", signOutError)
+//        }
+        
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let loginController = LoginController()
+                let navController = UINavigationController(rootViewController: loginController)
+                self.present(navController, animated: true, completion: nil)
+                return
+            }
+        }
     }
     
     //TODO: - reconstruct each navController without default NavController

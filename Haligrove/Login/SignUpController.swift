@@ -110,8 +110,6 @@ class SignUpController: UIViewController, UITextFieldDelegate {
     fileprivate func setupViews() {
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
-        
-        
         let stackView = UIStackView(arrangedSubviews: [emailTextField, usernameTextField, passwordTextField, signUpButton])
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
