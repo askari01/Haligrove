@@ -19,12 +19,6 @@ class MainTabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        do {
-//            try Auth.auth().signOut()
-//        } catch let signOutError {
-//            print("Failed to sign out: ", signOutError)
-//        }
-        
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 let loginController = LoginController()

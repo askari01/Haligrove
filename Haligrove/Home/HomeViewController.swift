@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -48,6 +49,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         homeViewSetup()
         layoutViews()
+        setupLogoutButton()
     }
     
     // MARK: - viewWillAppear
@@ -97,6 +99,27 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         containerView.addSubview(favoritesCollectionView)
         favoritesCollectionView.anchor(top: containerView.safeAreaLayoutGuide.topAnchor, right: containerView.safeAreaLayoutGuide.rightAnchor, bottom: containerView.safeAreaLayoutGuide.bottomAnchor, left: containerView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+    }
+    
+    fileprivate func setupLogoutButton() {
+        let logoutButton = UIBarButtonItem(image: #imageLiteral(resourceName: "logOut").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleLogout))
+        navigationItem.rightBarButtonItem = logoutButton
+    }
+    
+    @objc func handleLogout() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
+            do {
+                try Auth.auth().signOut()
+                let loginController = LoginController()
+                let navController = UINavigationController(rootViewController: loginController)
+                self.present(navController, animated: true, completion: nil)
+            } catch let signoutError {
+                print("Failed to sign out: ", signoutError)
+            }
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {

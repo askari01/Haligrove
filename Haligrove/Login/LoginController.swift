@@ -135,23 +135,23 @@ class LoginController: UIViewController, UITextFieldDelegate {
     }
     
     fileprivate func viewAnimations() {
-        UIView.animate(withDuration: 0.5, delay: 1.0, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0.8, options: [.curveEaseOut], animations: {
             self.titleLabel.center.y += 400
         }, completion: nil)
         
-        UIView.animate(withDuration: 0.4, delay: 0.4, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.2, options: [.curveEaseOut], animations: {
             self.emailTextField.center.x += self.view.bounds.width
         }, completion: nil)
         
-        UIView.animate(withDuration: 0.4, delay: 0.6, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.4, options: [.curveEaseOut], animations: {
             self.passwordTextField.center.x += self.view.bounds.width
         }, completion: nil)
         
-        UIView.animate(withDuration: 0.4, delay: 0.8, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.6, options: [.curveEaseOut], animations: {
             self.loginButton.center.x += self.view.bounds.width
         }, completion: nil)
         
-        UIView.animate(withDuration: 0.6, delay: 1.4, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.5, delay: 1.2, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: [.curveEaseOut], animations: {
             self.transitionButton.center.y -= 200
         }, completion: nil)
     }
