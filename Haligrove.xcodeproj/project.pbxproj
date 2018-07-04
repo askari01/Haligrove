@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		110573B720E67E72003FED87 /* EdiblesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110573B620E67E72003FED87 /* EdiblesCell.swift */; };
 		110573B920E6BE5C003FED87 /* ParaphernaliaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110573B820E6BE5C003FED87 /* ParaphernaliaCell.swift */; };
+		1108C08A20EBD7AE00E101D5 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108C08920EBD7AE00E101D5 /* SignUpController.swift */; };
+		1108C08C20EBFEAC00E101D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1108C08B20EBFEAB00E101D5 /* GoogleService-Info.plist */; };
+		1108C08E20EC366800E101D5 /* smoke.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1108C08D20EC366800E101D5 /* smoke.mov */; };
+		1108C09020EC473D00E101D5 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1108C08F20EC473D00E101D5 /* LoginController.swift */; };
 		110C5DE920DDC017007D85FB /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */; };
 		110C5DEB20DDDCEF007D85FB /* MainTabBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */; };
 		111BE6A020CC58AC00AD0DFB /* StrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111BE69F20CC58AC00AD0DFB /* StrainsCell.swift */; };
@@ -41,6 +45,10 @@
 /* Begin PBXFileReference section */
 		110573B620E67E72003FED87 /* EdiblesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdiblesCell.swift; sourceTree = "<group>"; };
 		110573B820E6BE5C003FED87 /* ParaphernaliaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaphernaliaCell.swift; sourceTree = "<group>"; };
+		1108C08920EBD7AE00E101D5 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		1108C08B20EBFEAB00E101D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1108C08D20EC366800E101D5 /* smoke.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = smoke.mov; sourceTree = "<group>"; };
+		1108C08F20EC473D00E101D5 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabBar+Extension.swift"; sourceTree = "<group>"; };
 		111BE69F20CC58AC00AD0DFB /* StrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsCell.swift; sourceTree = "<group>"; };
@@ -86,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1108C08820EBD77700E101D5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1108C08920EBD7AE00E101D5 /* SignUpController.swift */,
+				1108C08F20EC473D00E101D5 /* LoginController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		11349C3620C86208008CB439 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				11349C4420C86208008CB439 /* MainTabBarController.swift */,
+				1108C08820EBD77700E101D5 /* Login */,
 				11349C5820C894F2008CB439 /* Home */,
 				1155E9B120CAFF6D0018CBF9 /* Products */,
 				11349C5F20C8D078008CB439 /* Models */,
@@ -121,10 +139,12 @@
 		11349C5420C86637008CB439 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				1108C08D20EC366800E101D5 /* smoke.mov */,
 				11349C4220C86208008CB439 /* AppDelegate.swift */,
 				11349C4920C86209008CB439 /* Assets.xcassets */,
 				11349C4620C86208008CB439 /* Main.storyboard */,
 				11349C4B20C86209008CB439 /* LaunchScreen.storyboard */,
+				1108C08B20EBFEAB00E101D5 /* GoogleService-Info.plist */,
 				11349C4E20C86209008CB439 /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -306,6 +326,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				11349C4D20C86209008CB439 /* LaunchScreen.storyboard in Resources */,
+				1108C08C20EBFEAC00E101D5 /* GoogleService-Info.plist in Resources */,
+				1108C08E20EC366800E101D5 /* smoke.mov in Resources */,
 				11349C4A20C86209008CB439 /* Assets.xcassets in Resources */,
 				11349C4820C86208008CB439 /* Main.storyboard in Resources */,
 			);
@@ -371,6 +393,7 @@
 				1147748020CB67BC005BF2EB /* ExtractsViewController.swift in Sources */,
 				1147747520CB48D5005BF2EB /* ProductsCell.swift in Sources */,
 				11349C4520C86208008CB439 /* MainTabBarController.swift in Sources */,
+				1108C09020EC473D00E101D5 /* LoginController.swift in Sources */,
 				110573B720E67E72003FED87 /* EdiblesCell.swift in Sources */,
 				1147747D20CB6784005BF2EB /* HashViewController.swift in Sources */,
 				11349C6120C8D095008CB439 /* Product.swift in Sources */,
@@ -380,6 +403,7 @@
 				11349C4320C86208008CB439 /* AppDelegate.swift in Sources */,
 				1147748620CB6844005BF2EB /* ParaphernaliaViewController.swift in Sources */,
 				11633DEE20CA117700C35055 /* CustomCacheImageView.swift in Sources */,
+				1108C08A20EBD7AE00E101D5 /* SignUpController.swift in Sources */,
 				1147747320CB3EFA005BF2EB /* ProductsTableViewController.swift in Sources */,
 				113125F620CEE6330073E04B /* TableView+Animation+Extension.swift in Sources */,
 				110C5DE920DDC017007D85FB /* UserDefaults+Extension.swift in Sources */,
