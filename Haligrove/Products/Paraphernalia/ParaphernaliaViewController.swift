@@ -16,7 +16,7 @@ class ParaphernaliaViewController: UIViewController, UITableViewDelegate, UITabl
         return .lightContent
     }
     
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    var activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
     var paraphernaliaTableView: UITableView!
     var products = [Product]()
     
@@ -37,7 +37,6 @@ class ParaphernaliaViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
         ApiService.shared.fetchJson(from: urlString) { [weak self](data: [Product]) in
             self?.products = data
             self?.activityIndicator.stopAnimating()
@@ -57,7 +56,7 @@ class ParaphernaliaViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.addSubview(paraphernaliaTableView)
         
         self.view.addSubview(activityIndicator)
-        self.view.bringSubview(toFront: activityIndicator)
+        self.view.bringSubviewToFront(activityIndicator)
         activityIndicator.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
@@ -69,7 +68,7 @@ class ParaphernaliaViewController: UIViewController, UITableViewDelegate, UITabl
     func setup() {
         itemHeight = Array(repeating: closeHeight, count: rowsCount)
         paraphernaliaTableView.estimatedRowHeight = closeHeight
-        paraphernaliaTableView.rowHeight = UITableViewAutomaticDimension
+        paraphernaliaTableView.rowHeight = UITableView.automaticDimension
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {

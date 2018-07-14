@@ -83,9 +83,9 @@ class SignUpController: UIViewController, UITextFieldDelegate {
     
     let transitionButton: UIButton = {
         let button = UIButton(type: .custom)
-        let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)])
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)])
         button.setAttributedTitle(attributedTitle, for: .normal)
-        attributedTitle.append(NSAttributedString(string: "Login", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)]))
+        attributedTitle.append(NSAttributedString(string: "Login", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)]))
         button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
         return button
     }()
@@ -139,7 +139,7 @@ class SignUpController: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: avPlayer.currentItem)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(viewDidRotate), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewDidRotate), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     @objc func viewDidRotate() {
@@ -152,7 +152,7 @@ class SignUpController: UIViewController, UITextFieldDelegate {
     
     @objc func playerItemDidReachEnd(notification: Notification) {
         let p: AVPlayerItem = notification.object as! AVPlayerItem
-        p.seek(to: kCMTimeZero, completionHandler: nil)
+        p.seek(to: CMTime.zero, completionHandler: nil)
     }
     
     @objc func handleShowLogin() {
@@ -182,10 +182,10 @@ class SignUpController: UIViewController, UITextFieldDelegate {
         guard let username = usernameTextField.text, username.count > 0 else { return }
         guard let password = passwordTextField.text, password.count > 6 else { return }
         
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            if let err = error {
-                print("Failed to create user: ", err)
-                // TODO: - Present Notification of Failure to user
+        Auth.auth().createUser(withEmail: email, password: password) { (user, err) in
+            if let err = err {
+                print(err._code)
+                self.handleError(err)
                 return
             }
             print("Successfully created user: ", user?.uid ?? "")

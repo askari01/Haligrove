@@ -16,7 +16,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return .lightContent
     }
     
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    var activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
     var strainsTableView: UITableView!
     var strains = [Product]()
     var filteredStrains = [Product]()
@@ -39,7 +39,6 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
         ApiService.shared.fetchJson(from: urlString) { [weak self] (data: [Product]) in
             self?.strains = data
             self?.activityIndicator.stopAnimating()
@@ -68,7 +67,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.view.addSubview(strainsTableView)
         
         self.view.addSubview(activityIndicator)
-        self.view.bringSubview(toFront: activityIndicator)
+        self.view.bringSubviewToFront(activityIndicator)
         activityIndicator.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
@@ -80,7 +79,7 @@ class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     private func setup() {
         itemHeight = Array(repeating: closeHeight, count: rowsCount)
         strainsTableView.estimatedRowHeight = closeHeight
-        strainsTableView.rowHeight = UITableViewAutomaticDimension
+        strainsTableView.rowHeight = UITableView.automaticDimension
     }
     
     func searchBarIsEmpty() -> Bool {

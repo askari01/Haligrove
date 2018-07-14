@@ -32,7 +32,7 @@ class StrainsCell: FoldingCell, NSCacheDelegate {
     // ContainerView UI Items
     
     // MARK: - Initializers
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         containerView = createContainerView()

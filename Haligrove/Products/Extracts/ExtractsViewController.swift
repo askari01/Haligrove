@@ -15,7 +15,7 @@ class ExtractsViewController: UIViewController, UITableViewDelegate, UITableView
         return .lightContent
     }
     
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    var activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
     var extractsTableView: UITableView!
     var products = [Product]()
     
@@ -36,7 +36,6 @@ class ExtractsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
         ApiService.shared.fetchJson(from: urlString) { [weak self](data: [Product]) in
             self?.products = data
             self?.activityIndicator.stopAnimating()
@@ -56,7 +55,7 @@ class ExtractsViewController: UIViewController, UITableViewDelegate, UITableView
         self.view.addSubview(extractsTableView)
         
         self.view.addSubview(activityIndicator)
-        self.view.bringSubview(toFront: activityIndicator)
+        self.view.bringSubviewToFront(activityIndicator)
         activityIndicator.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
@@ -68,7 +67,7 @@ class ExtractsViewController: UIViewController, UITableViewDelegate, UITableView
     func setup() {
         itemHeight = Array(repeating: closeHeight, count: rowsCount)
         extractsTableView.estimatedRowHeight = closeHeight
-        extractsTableView.rowHeight = UITableViewAutomaticDimension
+        extractsTableView.rowHeight = UITableView.automaticDimension
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {

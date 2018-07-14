@@ -10,9 +10,15 @@ import UIKit
 import Firebase
 import AVFoundation
 
+
+
 class LoginController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Class Properties
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var avPlayer: AVPlayer!
     var avPlayerLayer: AVPlayerLayer!
     var paused: Bool = false
@@ -67,9 +73,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     let transitionButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Don't have an account? ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)])
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account? ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)])
         button.setAttributedTitle(attributedTitle, for: .normal)
-        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]))
+        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]))
         button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         return button
     }()
@@ -115,7 +121,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         view.addSubview(transitionButton)
         transitionButton.anchor(top: nil, right: view.rightAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, left: view.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 50)
-        
     }
     
     private func setupVideoBackground() {
@@ -131,7 +136,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: avPlayer.currentItem)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(viewDidRotate), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewDidRotate), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     fileprivate func viewAnimations() {
@@ -167,7 +172,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     @objc func playerItemDidReachEnd(notification: Notification) {
         let p: AVPlayerItem = notification.object as! AVPlayerItem
-        p.seek(to: kCMTimeZero, completionHandler: nil)
+        p.seek(to: CMTime.zero, completionHandler: nil)
     }
     
     @objc func handleLogin() {
@@ -175,7 +180,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
         guard let password = passwordTextField.text else { return }
         Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
             if let err = err {
-                print("Failed to sign in with email: ", err)
+                print(err._code)
+                self.handleError(err)
                 return
             }
             print("Successfully logged back in with user:", user?.uid ?? "")
@@ -216,9 +222,5 @@ class LoginController: UIViewController, UITextFieldDelegate {
     @objc func handleShowSignUp() {
         let signUpController = SignUpController()
         navigationController?.pushViewController(signUpController, animated: true)
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
     }
 }

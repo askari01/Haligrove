@@ -37,6 +37,7 @@
 		1147748620CB6844005BF2EB /* ParaphernaliaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */; };
 		11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DEB20C9E86B00C35055 /* ApiService.swift */; };
 		11633DEE20CA117700C35055 /* CustomCacheImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DED20CA117700C35055 /* CustomCacheImageView.swift */; };
+		1163CC1F20F97728006804AD /* ErrorHandling+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1163CC1E20F97728006804AD /* ErrorHandling+Extension.swift */; };
 		1177566720E570BE00406562 /* ExtractsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1177566620E570BE00406562 /* ExtractsCell.swift */; };
 		11E7FAB820DC0E8E0053B9F7 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E7FAB720DC0E8E0053B9F7 /* FavoritesCell.swift */; };
 		96092585EC6CA7E6F64A4ACC /* Pods_Haligrove.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E838030C5B9ECC13DC62D8 /* Pods_Haligrove.framework */; };
@@ -75,6 +76,7 @@
 		1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaphernaliaViewController.swift; sourceTree = "<group>"; };
 		11633DEB20C9E86B00C35055 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		11633DED20CA117700C35055 /* CustomCacheImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCacheImageView.swift; sourceTree = "<group>"; };
+		1163CC1E20F97728006804AD /* ErrorHandling+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorHandling+Extension.swift"; sourceTree = "<group>"; };
 		1177566620E570BE00406562 /* ExtractsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractsCell.swift; sourceTree = "<group>"; };
 		11E7FAB720DC0E8E0053B9F7 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		98E838030C5B9ECC13DC62D8 /* Pods_Haligrove.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Haligrove.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 				113125F520CEE6330073E04B /* TableView+Animation+Extension.swift */,
 				110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */,
 				110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */,
+				1163CC1E20F97728006804AD /* ErrorHandling+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				TargetAttributes = {
 					11349C3E20C86208008CB439 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -413,6 +417,7 @@
 				11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */,
 				1147748320CB680B005BF2EB /* EdiblesViewController.swift in Sources */,
 				1147747720CB505D005BF2EB /* ExpandedLabel.swift in Sources */,
+				1163CC1F20F97728006804AD /* ErrorHandling+Extension.swift in Sources */,
 				111BE6A020CC58AC00AD0DFB /* StrainsCell.swift in Sources */,
 				1147747A20CB673E005BF2EB /* StrainsViewController.swift in Sources */,
 				111BE6A220CC72DF00AD0DFB /* SearchBar+Extension.swift in Sources */,
@@ -569,7 +574,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.haligrove.Haligrove;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -588,7 +593,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.haligrove.Haligrove;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

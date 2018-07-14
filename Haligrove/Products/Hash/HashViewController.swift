@@ -14,7 +14,7 @@ import FoldingCell
 class HashViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HashFavoriteDelegate {
     
     // MARK: - Property Declarations
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    var activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
     
     var hashTableView: UITableView!
     var hashProducts = [Product]()
@@ -37,7 +37,6 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Class Methods
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
         ApiService.shared.fetchJson(from: urlString) { [weak self] (data: [Product]) in
             self?.hashProducts = data
             self?.activityIndicator.stopAnimating()
@@ -55,7 +54,7 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
         hashTableView.separatorStyle = .none
         self.view.addSubview(hashTableView)
         self.view.addSubview(activityIndicator)
-        self.view.bringSubview(toFront: activityIndicator)
+        self.view.bringSubviewToFront(activityIndicator)
         activityIndicator.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
@@ -67,7 +66,7 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func setup() {
         itemHeight = Array(repeating: closeHeight, count: rowsCount)
         hashTableView.estimatedRowHeight = closeHeight
-        hashTableView.rowHeight = UITableViewAutomaticDimension
+        hashTableView.rowHeight = UITableView.automaticDimension
     }
     
     // MARK: - Delegate Methods
