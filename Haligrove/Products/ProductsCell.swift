@@ -73,7 +73,7 @@ class ProductsCell: UITableViewCell {
         cellView.addSubview(rightArrow)
         cellView.addSubview(labelStackView)
         
-        cellView.anchor(top: topAnchor, right: rightAnchor, bottom: bottomAnchor, left: leftAnchor, paddingTop: 4, paddingRight: 4, paddingBottom: 4, paddingLeft: 4, width: 0, height: 0)
+        cellView.anchor(top: safeAreaLayoutGuide.topAnchor, right: safeAreaLayoutGuide.rightAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, left: safeAreaLayoutGuide.leftAnchor, paddingTop: 4, paddingRight: 4, paddingBottom: 4, paddingLeft: 4, width: 0, height: 0)
         
         rightArrow.anchor(top: nil, right: cellView.rightAnchor, bottom: nil, left: nil, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 30, height: 30)
         rightArrow.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true

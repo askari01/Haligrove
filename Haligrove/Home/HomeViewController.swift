@@ -18,6 +18,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return .lightContent
     }
     
+    let scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.backgroundColor = .clear
+        return sv
+    }()
+    
+    let shim: UILabel = {
+        let label = UILabel()
+        label.text = " "
+        label.backgroundColor = .clear
+        label.textAlignment = .center
+        return label
+    }()
+    
+    // Favorites
     fileprivate let homeFavoritesCellIdentifier = "favoritesCell"
     
     let homeFavoritesLabel: UILabel = {
@@ -25,11 +40,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         label.text = "Favorites"
         label.font = UIFont.boldSystemFont(ofSize: 26)
         label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
         label.textAlignment = .center
         return label
     }()
     
-    let containerView: UIView = {
+    let favoritesContainerView: UIView = {
         let cv = UIView()
         cv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         return cv
@@ -44,11 +61,99 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return cv
     }()
     
+    let defaultLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    // New Arrivals
+    let newArrivalsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "New Arrivals"
+        label.font = UIFont.boldSystemFont(ofSize: 26)
+        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        label.backgroundColor = .clear
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let newArrivalsContainerView: UIView = {
+        let cv = UIView()
+        cv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        return cv
+    }()
+    
+    let newArrivalsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.indicatorStyle = .white
+        return cv
+    }()
+    
+    // Specials
+    let specialsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Specials"
+        label.font = UIFont.boldSystemFont(ofSize: 26)
+        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        label.backgroundColor = .clear
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let specialsContainerView: UIView = {
+        let cv = UIView()
+        cv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        return cv
+    }()
+    
+    let specialsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.indicatorStyle = .white
+        return cv
+    }()
+    
+    // Suggestions
+    let suggestionsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Suggestions"
+        label.font = UIFont.boldSystemFont(ofSize: 26)
+        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        label.backgroundColor = .clear
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let suggestionsContainerView: UIView = {
+        let cv = UIView()
+        cv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        return cv
+    }()
+    
+    let suggestionsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.indicatorStyle = .white
+        return cv
+    }()
+    
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewSetup()
         layoutViews()
+        setupDefaultLabel()
         setupLogoutButton()
     }
     
@@ -56,6 +161,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         favoritedProducts = UserDefaults.standard.savedProducts()
+        if favoritedProducts.count < 1 {
+            defaultLabel.isHidden = false
+        } else {
+            defaultLabel.isHidden = true
+        }
         favoritesCollectionView.reloadData()
         UIApplication.mainTabBarController()?.viewControllers?[0].tabBarItem.badgeValue = nil
     }
@@ -83,22 +193,78 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.favoritedProducts.remove(at: selectedIndexPath.item)
             self.favoritesCollectionView.deleteItems(at: [selectedIndexPath])
             UserDefaults.standard.deleteProduct(product: selectedProduct)
+            if self.favoritedProducts.count < 1 {
+                self.defaultLabel.isHidden = false
+            } else {
+                self.defaultLabel.isHidden = true
+            }
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(alertController, animated: true)
     }
     
     private func layoutViews() {
-        // Favorites Label
-        view.addSubview(homeFavoritesLabel)
-        homeFavoritesLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, right: view.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: view.safeAreaLayoutGuide.leftAnchor, paddingTop: 12, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 50)
         
-        // ContainerView + CollectionView
-        view.addSubview(containerView)
-        containerView.anchor(top: homeFavoritesLabel.safeAreaLayoutGuide.bottomAnchor, right: view.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: view.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 280)
+        self.view.addSubview(scrollView)
+        scrollView.anchor(top: view.topAnchor, right: view.rightAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 0)
         
-        containerView.addSubview(favoritesCollectionView)
-        favoritesCollectionView.anchor(top: containerView.safeAreaLayoutGuide.topAnchor, right: containerView.safeAreaLayoutGuide.rightAnchor, bottom: containerView.safeAreaLayoutGuide.bottomAnchor, left: containerView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        // Favorites
+        scrollView.addSubview(homeFavoritesLabel)
+        homeFavoritesLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0).isActive = true
+        homeFavoritesLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16.0).isActive = true
+        homeFavoritesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        scrollView.addSubview(favoritesContainerView)
+        favoritesContainerView.anchor(top: homeFavoritesLabel.safeAreaLayoutGuide.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 280)
+        
+        favoritesContainerView.addSubview(favoritesCollectionView)
+        favoritesCollectionView.anchor(top: favoritesContainerView.topAnchor, right: favoritesContainerView.rightAnchor, bottom: favoritesContainerView.bottomAnchor, left: favoritesContainerView.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        
+        // New Arrivals
+        scrollView.addSubview(newArrivalsLabel)
+        newArrivalsLabel.anchor(top: favoritesContainerView.safeAreaLayoutGuide.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 16, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        
+        scrollView.addSubview(newArrivalsContainerView)
+        newArrivalsContainerView.anchor(top: newArrivalsLabel.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 280)
+        
+        // Specials
+        scrollView.addSubview(specialsLabel)
+        specialsLabel.anchor(top: newArrivalsContainerView.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 16, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        
+        scrollView.addSubview(specialsContainerView)
+        specialsContainerView.anchor(top: specialsLabel.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 280)
+        
+        // Suggestions
+        scrollView.addSubview(suggestionsLabel)
+        suggestionsLabel.anchor(top: specialsContainerView.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 16, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        
+        scrollView.addSubview(suggestionsContainerView)
+        suggestionsContainerView.anchor(top: suggestionsLabel.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 280)
+        
+        // Shim
+        scrollView.addSubview(shim)
+        shim.anchor(top: scrollView.topAnchor, right: scrollView.rightAnchor, bottom: scrollView.bottomAnchor, left: scrollView.leftAnchor, paddingTop: 1290, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: scrollView.frame.width, height: 0)
+    }
+    
+    func setupDefaultLabel() {
+        let imageSize = CGRect(x: 0, y: -5, width: 30, height: 30)
+        let favoriteButtonImage = UIImage(named: "star")
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = favoriteButtonImage
+        imageAttachment.bounds = imageSize
+        let completeText = NSMutableAttributedString(string: "")
+        let textBeforeImage = NSMutableAttributedString(string: "Press the ")
+        let attachmentString = NSAttributedString(attachment: imageAttachment)
+        let textAfterImage = NSMutableAttributedString(string: " icon next to products to add items to favorites.")
+        
+        completeText.append(textBeforeImage)
+        completeText.append(attachmentString)
+        completeText.append(textAfterImage)
+        
+        self.defaultLabel.attributedText = completeText
+        
+        favoritesContainerView.addSubview(defaultLabel)
+        defaultLabel.anchor(top: favoritesContainerView.topAnchor, right: favoritesContainerView.rightAnchor, bottom: favoritesContainerView.bottomAnchor, left: favoritesContainerView.leftAnchor, paddingTop: 0, paddingRight: 20, paddingBottom: 0, paddingLeft: 20, width: favoritesContainerView.bounds.width, height: favoritesContainerView.bounds.height)
     }
     
     fileprivate func setupLogoutButton() {
@@ -122,8 +288,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         present(alertController, animated: true, completion: nil)
     }
     
-    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        favoritesCollectionView.reloadData()
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {        favoritesCollectionView.reloadData()
     }
     
     // MARK: - CollectionViewDataSource
@@ -138,8 +303,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (containerView.frame.width - 3 * 8) / 2
-        let height = containerView.frame.height * 0.90
+        let width = (favoritesContainerView.frame.width - 3 * 8) / 2
+        let height = favoritesContainerView.frame.height * 0.90
         return CGSize(width: width, height: height)
     }
     
