@@ -9,8 +9,6 @@
 import UIKit
 import FoldingCell
 
-
-
 class HashViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HashFavoriteDelegate {
     
     // MARK: - Property Declarations
@@ -159,5 +157,3 @@ class HashViewController: UIViewController, UITableViewDelegate, UITableViewData
 protocol HashFavoriteDelegate: class {
     func didTapHashFavoritesButton(in cell: HashCell)
 }
-
-

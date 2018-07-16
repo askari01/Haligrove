@@ -13,6 +13,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // MARK: - Property Declarations
     var favoritedProducts = UserDefaults.standard.savedProducts()
+    var newArrrivals = [Product]()
+    var specials = [Product]()
+    var suggestions = [Product]()
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
@@ -32,9 +35,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return label
     }()
     
-    // Favorites
     fileprivate let homeFavoritesCellIdentifier = "favoritesCell"
+    fileprivate let newArrivalsCellIdentifier = "newArrivalsCell"
+    fileprivate let specialsCellIdentifier = "specialsCell"
+    fileprivate let suggestionsCellIdentifier = "suggestionsCell"
     
+    // Favorites
     let homeFavoritesLabel: UILabel = {
        let label = UILabel()
         label.text = "Favorites"
@@ -177,11 +183,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         navigationController?.navigationBar.tintColor = .gray
         navigationController?.navigationBar.barStyle = .black
+        
         favoritesCollectionView.register(FavoritesCell.self, forCellWithReuseIdentifier: homeFavoritesCellIdentifier)
         favoritesCollectionView.delegate = self
         favoritesCollectionView.dataSource = self
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         favoritesCollectionView.addGestureRecognizer(gesture)
+        
+        // TODO: - add tap gester recognizer
+        newArrivalsCollectionView.register(NewArrivalsCell.self, forCellWithReuseIdentifier: newArrivalsCellIdentifier)
+        newArrivalsCollectionView.delegate = self
+        newArrivalsCollectionView.dataSource = self
+        
+        specialsCollectionView.register(SpecialsCell.self, forCellWithReuseIdentifier: specialsCellIdentifier)
+        specialsCollectionView.delegate = self
+        specialsCollectionView.dataSource = self
+        
+        suggestionsCollectionView.register(SuggestionsCell.self, forCellWithReuseIdentifier: suggestionsCellIdentifier)
+        suggestionsCollectionView.delegate = self
+        suggestionsCollectionView.dataSource = self
     }
     
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
@@ -227,6 +247,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         scrollView.addSubview(newArrivalsContainerView)
         newArrivalsContainerView.anchor(top: newArrivalsLabel.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 280)
         
+        newArrivalsContainerView.addSubview(newArrivalsCollectionView)
+        newArrivalsCollectionView.anchor(top: newArrivalsContainerView.topAnchor, right: newArrivalsContainerView.rightAnchor, bottom: newArrivalsContainerView.bottomAnchor, left: newArrivalsContainerView.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        
         // Specials
         scrollView.addSubview(specialsLabel)
         specialsLabel.anchor(top: newArrivalsContainerView.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 16, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
@@ -234,12 +257,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         scrollView.addSubview(specialsContainerView)
         specialsContainerView.anchor(top: specialsLabel.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 280)
         
+        specialsContainerView.addSubview(specialsCollectionView)
+        specialsCollectionView.anchor(top: specialsContainerView.topAnchor, right: specialsContainerView.rightAnchor, bottom: specialsContainerView.bottomAnchor, left: specialsContainerView.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
+        
         // Suggestions
         scrollView.addSubview(suggestionsLabel)
         suggestionsLabel.anchor(top: specialsContainerView.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 16, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
         
         scrollView.addSubview(suggestionsContainerView)
         suggestionsContainerView.anchor(top: suggestionsLabel.bottomAnchor, right: scrollView.safeAreaLayoutGuide.rightAnchor, bottom: nil, left: scrollView.safeAreaLayoutGuide.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: view.frame.width, height: 280)
+        
+        suggestionsContainerView.addSubview(suggestionsCollectionView)
+        suggestionsCollectionView.anchor(top: suggestionsContainerView.topAnchor, right: suggestionsContainerView.rightAnchor, bottom: suggestionsContainerView.bottomAnchor, left: suggestionsContainerView.leftAnchor, paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, width: 0, height: 0)
         
         // Shim
         scrollView.addSubview(shim)
@@ -293,13 +322,44 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     // MARK: - CollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favoritedProducts.count
+        
+        switch collectionView {
+        case self.favoritesCollectionView:
+            return favoritedProducts.count
+        case self.newArrivalsCollectionView:
+            //return newArrrivals.count
+            return 5
+        case self.specialsCollectionView:
+            // return specials.count
+            return 5
+        case self.suggestionsCollectionView:
+            // return suggestions.count
+            return 5
+        default:
+            return 5
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = favoritesCollectionView.dequeueReusableCell(withReuseIdentifier: homeFavoritesCellIdentifier, for: indexPath) as! FavoritesCell
-        cell.product = self.favoritedProducts[indexPath.item]
-        return cell
+        
+        switch collectionView {
+        case self.favoritesCollectionView:
+            let favoritesCell = favoritesCollectionView.dequeueReusableCell(withReuseIdentifier: homeFavoritesCellIdentifier, for: indexPath) as! FavoritesCell
+            favoritesCell.product = self.favoritedProducts[indexPath.item]
+            return favoritesCell
+        case self.newArrivalsCollectionView:
+            let newArrivalsCell = newArrivalsCollectionView.dequeueReusableCell(withReuseIdentifier: newArrivalsCellIdentifier, for: indexPath) as! NewArrivalsCell
+            return newArrivalsCell
+        case self.specialsCollectionView:
+            let specialsCell = specialsCollectionView.dequeueReusableCell(withReuseIdentifier: specialsCellIdentifier, for: indexPath) as! SpecialsCell
+            return specialsCell
+        case self.suggestionsCollectionView:
+            let suggestionsCell = suggestionsCollectionView.dequeueReusableCell(withReuseIdentifier: suggestionsCellIdentifier, for: indexPath) as! SuggestionsCell
+            return suggestionsCell
+        default:
+            let cell = UICollectionViewCell()
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
