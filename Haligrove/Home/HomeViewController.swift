@@ -17,6 +17,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var specials = [Product]()
     var suggestions = [Product]()
     
+    let apiService: ApiService
+    
+    init(apiService: ApiService) {
+        self.apiService = apiService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
@@ -39,6 +50,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     fileprivate let newArrivalsCellIdentifier = "newArrivalsCell"
     fileprivate let specialsCellIdentifier = "specialsCell"
     fileprivate let suggestionsCellIdentifier = "suggestionsCell"
+    
+    let newArrivalsUrl = "http://app.haligrove.com/newArrivals.json"
+    let specialsUrl = "http://app.haligrove.com/specials.json"
+    let suggestionsUrl = "http://app.haligrove.com/suggestionsUrl.json"
     
     // Favorites
     let homeFavoritesLabel: UILabel = {
@@ -166,14 +181,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     // MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        favoritedProducts = UserDefaults.standard.savedProducts()
-        if favoritedProducts.count < 1 {
-            defaultLabel.isHidden = false
-        } else {
-            defaultLabel.isHidden = true
-        }
-        favoritesCollectionView.reloadData()
-        UIApplication.mainTabBarController()?.viewControllers?[0].tabBarItem.badgeValue = nil
+        populateData()
     }
     
     // MARK: - Class Methods
@@ -203,6 +211,35 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         suggestionsCollectionView.delegate = self
         suggestionsCollectionView.dataSource = self
     }
+    
+    fileprivate func populateData() {
+        favoritedProducts = UserDefaults.standard.savedProducts()
+        
+        if favoritedProducts.count < 1 {
+            defaultLabel.isHidden = false
+        } else {
+            defaultLabel.isHidden = true
+        }
+        
+        favoritesCollectionView.reloadData()
+        UIApplication.mainTabBarController()?.viewControllers?[0].tabBarItem.badgeValue = nil
+        
+        apiService.fetchJson(from: newArrivalsUrl) { [weak self](data: [Product]) in
+            self?.newArrrivals = data
+            self?.newArrivalsCollectionView.reloadData()
+        }
+        
+        apiService.fetchJson(from: specialsUrl) { [weak self](data: [Product]) in
+            self?.specials = data
+            self?.specialsCollectionView.reloadData()
+        }
+        
+        apiService.fetchJson(from: suggestionsUrl) { [weak self](data: [Product]) in
+            self?.suggestions = data
+            self?.suggestionsCollectionView.reloadData()
+        }
+    }
+    
     
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
         let location = gesture.location(in: favoritesCollectionView)
@@ -327,14 +364,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         case self.favoritesCollectionView:
             return favoritedProducts.count
         case self.newArrivalsCollectionView:
-            //return newArrrivals.count
-            return 5
+            return newArrrivals.count
         case self.specialsCollectionView:
-            // return specials.count
-            return 5
+            return specials.count
         case self.suggestionsCollectionView:
-            // return suggestions.count
-            return 5
+            return suggestions.count
         default:
             return 5
         }
@@ -349,12 +383,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return favoritesCell
         case self.newArrivalsCollectionView:
             let newArrivalsCell = newArrivalsCollectionView.dequeueReusableCell(withReuseIdentifier: newArrivalsCellIdentifier, for: indexPath) as! NewArrivalsCell
+            newArrivalsCell.product = self.newArrrivals[indexPath.item]
             return newArrivalsCell
         case self.specialsCollectionView:
             let specialsCell = specialsCollectionView.dequeueReusableCell(withReuseIdentifier: specialsCellIdentifier, for: indexPath) as! SpecialsCell
+            specialsCell.product = self.specials[indexPath.item]
             return specialsCell
         case self.suggestionsCollectionView:
             let suggestionsCell = suggestionsCollectionView.dequeueReusableCell(withReuseIdentifier: suggestionsCellIdentifier, for: indexPath) as! SuggestionsCell
+            suggestionsCell.product = self.specials[indexPath.item]
             return suggestionsCell
         default:
             let cell = UICollectionViewCell()

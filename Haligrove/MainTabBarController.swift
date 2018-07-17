@@ -32,8 +32,11 @@ class MainTabBarController: UITabBarController {
     //TODO: - reconstruct each navController without default NavController
     func setupViewControllers() {
         
+        // Dependency Injection
+        let apiService = ApiService.shared
+        
         // Home
-        let homeNavController = templateController(for: HomeViewController(), title: "Home", image: #imageLiteral(resourceName: "home"))
+        let homeNavController = templateController(for: HomeViewController(apiService: apiService), title: "Home", image: #imageLiteral(resourceName: "home"))
         
         // Products
         let productsNavController = templateController(for: ProductsTableViewController(), title: "Products", image: #imageLiteral(resourceName: "strains"))

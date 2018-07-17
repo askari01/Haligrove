@@ -72,6 +72,7 @@
 		113E49FE20FC1AA700BCA70F /* NewArrivalsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewArrivalsCell.swift; sourceTree = "<group>"; };
 		113E4A0020FC1B8C00BCA70F /* SpecialsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialsCell.swift; sourceTree = "<group>"; };
 		113E4A0220FC1CA700BCA70F /* SuggestionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsCell.swift; sourceTree = "<group>"; };
+		113E4A0420FC2C7D00BCA70F /* chalkBoard.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = chalkBoard.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1147747220CB3EFA005BF2EB /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		1147747420CB48D5005BF2EB /* ProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCell.swift; sourceTree = "<group>"; };
 		1147747620CB505D005BF2EB /* ExpandedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedLabel.swift; sourceTree = "<group>"; };
@@ -132,6 +133,7 @@
 		11349C4120C86208008CB439 /* Haligrove */ = {
 			isa = PBXGroup;
 			children = (
+				113E4A0420FC2C7D00BCA70F /* chalkBoard.playground */,
 				11349C4420C86208008CB439 /* MainTabBarController.swift */,
 				1108C08820EBD77700E101D5 /* Login */,
 				11349C5820C894F2008CB439 /* Home */,
