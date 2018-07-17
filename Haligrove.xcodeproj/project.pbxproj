@@ -38,6 +38,9 @@
 		1147748020CB67BC005BF2EB /* ExtractsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147747F20CB67BC005BF2EB /* ExtractsViewController.swift */; };
 		1147748320CB680B005BF2EB /* EdiblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147748220CB680B005BF2EB /* EdiblesViewController.swift */; };
 		1147748620CB6844005BF2EB /* ParaphernaliaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */; };
+		11557BB320FE895800B58DDA /* Bakersfield Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11557BB220FE895700B58DDA /* Bakersfield Bold.ttf */; };
+		11557BB520FE896100B58DDA /* Bakersfield Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11557BB420FE896100B58DDA /* Bakersfield Light.ttf */; };
+		11557BB720FE90BE00B58DDA /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11557BB620FE90BE00B58DDA /* Fonts.swift */; };
 		11633DEC20C9E86B00C35055 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DEB20C9E86B00C35055 /* ApiService.swift */; };
 		11633DEE20CA117700C35055 /* CustomCacheImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633DED20CA117700C35055 /* CustomCacheImageView.swift */; };
 		1163CC1F20F97728006804AD /* ErrorHandling+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1163CC1E20F97728006804AD /* ErrorHandling+Extension.swift */; };
@@ -81,6 +84,9 @@
 		1147747F20CB67BC005BF2EB /* ExtractsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractsViewController.swift; sourceTree = "<group>"; };
 		1147748220CB680B005BF2EB /* EdiblesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdiblesViewController.swift; sourceTree = "<group>"; };
 		1147748520CB6844005BF2EB /* ParaphernaliaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaphernaliaViewController.swift; sourceTree = "<group>"; };
+		11557BB220FE895700B58DDA /* Bakersfield Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bakersfield Bold.ttf"; sourceTree = "<group>"; };
+		11557BB420FE896100B58DDA /* Bakersfield Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bakersfield Light.ttf"; sourceTree = "<group>"; };
+		11557BB620FE90BE00B58DDA /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		11633DEB20C9E86B00C35055 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		11633DED20CA117700C35055 /* CustomCacheImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCacheImageView.swift; sourceTree = "<group>"; };
 		1163CC1E20F97728006804AD /* ErrorHandling+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorHandling+Extension.swift"; sourceTree = "<group>"; };
@@ -140,7 +146,7 @@
 				1155E9B120CAFF6D0018CBF9 /* Products */,
 				11349C5F20C8D078008CB439 /* Models */,
 				11633DEA20C9E7FF00C35055 /* NetworkLayer */,
-				11349C5720C894D4008CB439 /* Helpers */,
+				11349C5720C894D4008CB439 /* Utilities */,
 				11349C5420C86637008CB439 /* SupportingFiles */,
 			);
 			path = Haligrove;
@@ -149,6 +155,7 @@
 		11349C5420C86637008CB439 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				11C6D0E220FE7CE400BAA961 /* Fonts */,
 				1108C08D20EC366800E101D5 /* smoke.mov */,
 				11349C4220C86208008CB439 /* AppDelegate.swift */,
 				11349C4920C86209008CB439 /* Assets.xcassets */,
@@ -160,7 +167,7 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		11349C5720C894D4008CB439 /* Helpers */ = {
+		11349C5720C894D4008CB439 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				11349C5920C89557008CB439 /* Anchor+Extension.swift */,
@@ -170,8 +177,9 @@
 				110C5DE820DDC017007D85FB /* UserDefaults+Extension.swift */,
 				110C5DEA20DDDCEF007D85FB /* MainTabBar+Extension.swift */,
 				1163CC1E20F97728006804AD /* ErrorHandling+Extension.swift */,
+				11557BB620FE90BE00B58DDA /* Fonts.swift */,
 			);
-			path = Helpers;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		11349C5820C894F2008CB439 /* Home */ = {
@@ -262,6 +270,15 @@
 			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
+		11C6D0E220FE7CE400BAA961 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				11557BB420FE896100B58DDA /* Bakersfield Light.ttf */,
+				11557BB220FE895700B58DDA /* Bakersfield Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		8A3C8318FE634D60B61A6693 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,7 +358,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				11349C4D20C86209008CB439 /* LaunchScreen.storyboard in Resources */,
+				11557BB320FE895800B58DDA /* Bakersfield Bold.ttf in Resources */,
 				1108C08C20EBFEAC00E101D5 /* GoogleService-Info.plist in Resources */,
+				11557BB520FE896100B58DDA /* Bakersfield Light.ttf in Resources */,
 				1108C08E20EC366800E101D5 /* smoke.mov in Resources */,
 				11349C4A20C86209008CB439 /* Assets.xcassets in Resources */,
 				11349C4820C86208008CB439 /* Main.storyboard in Resources */,
@@ -409,6 +428,7 @@
 				1147747520CB48D5005BF2EB /* ProductsCell.swift in Sources */,
 				11349C4520C86208008CB439 /* MainTabBarController.swift in Sources */,
 				1108C09020EC473D00E101D5 /* LoginController.swift in Sources */,
+				11557BB720FE90BE00B58DDA /* Fonts.swift in Sources */,
 				110573B720E67E72003FED87 /* EdiblesCell.swift in Sources */,
 				1147747D20CB6784005BF2EB /* HashViewController.swift in Sources */,
 				11349C6120C8D095008CB439 /* Product.swift in Sources */,
