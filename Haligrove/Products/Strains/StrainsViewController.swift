@@ -9,6 +9,7 @@
 import UIKit
 import FoldingCell
 
+// TODO: - Refactor All Product viewControllers into template using generics
 class StrainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StrainFavoriteDelegate {
     
     // MARK: - Property Declarations

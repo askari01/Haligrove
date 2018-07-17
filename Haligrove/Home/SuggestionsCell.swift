@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: - Refactor into a template cell
 class SuggestionsCell: UICollectionViewCell {
     
     // MARK: - Property Declarations

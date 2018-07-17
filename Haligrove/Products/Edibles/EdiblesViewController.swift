@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: - Refactor All Product viewControllers into template using generics
 class EdiblesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EdiblesFavoriteDelegate {
     
     // MARK: - Property Declarations

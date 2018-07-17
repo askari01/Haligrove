@@ -8,8 +8,8 @@
 
 import UIKit
 
+// TODO: - Refactor All Product viewControllers into template using generics
 class ParaphernaliaViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ParaphernaliaFavoriteDelegate {
-    
     
     // MARK: - Property Declarations
     override var preferredStatusBarStyle: UIStatusBarStyle {

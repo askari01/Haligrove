@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: - Refactor All Product viewControllers into template using generics
 class ExtractsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExtractsFavoriteDelegate {
     
     // MARK: - Property Declarations

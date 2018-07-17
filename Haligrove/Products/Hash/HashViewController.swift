@@ -9,6 +9,7 @@
 import UIKit
 import FoldingCell
 
+// TODO: - Refactor All Product viewControllers into template using generics
 class HashViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HashFavoriteDelegate {
     
     // MARK: - Property Declarations

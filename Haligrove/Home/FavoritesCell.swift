@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: - Refactor out cells into one template cell
 class FavoritesCell: UICollectionViewCell {
     
     // MARK: - Property Declarations
