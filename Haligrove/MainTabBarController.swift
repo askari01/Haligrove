@@ -32,7 +32,7 @@ class MainTabBarController: UITabBarController {
     //TODO: - reconstruct each navController without default NavController
     func setupViewControllers() {
         
-        // Dependency Injection
+        // Dependency Injection ??
         let apiService = ApiService.shared
         
         // Home

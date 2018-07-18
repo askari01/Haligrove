@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     let newArrivalsUrl = "http://app.haligrove.com/newArrivals.json"
     let specialsUrl = "http://app.haligrove.com/specials.json"
-    let suggestionsUrl = "http://app.haligrove.com/suggestionsUrl.json"
+    let suggestionsUrl = "http://app.haligrove.com/suggestions.json"
     
     // Favorites
     let homeFavoritesLabel: UILabel = {
@@ -391,7 +391,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return specialsCell
         case self.suggestionsCollectionView:
             let suggestionsCell = suggestionsCollectionView.dequeueReusableCell(withReuseIdentifier: suggestionsCellIdentifier, for: indexPath) as! SuggestionsCell
-            suggestionsCell.product = self.specials[indexPath.item]
+            suggestionsCell.product = self.suggestions[indexPath.item]
             return suggestionsCell
         default:
             let cell = UICollectionViewCell()

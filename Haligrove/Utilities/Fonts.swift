@@ -11,6 +11,15 @@ import UIKit
 
 struct Font {
     
+    // MARK: - Usage examples
+    /*
+        let system12 = Font(.system, size: .standard(.h5)).instance
+        let bakersfieldThin  = Font(.installed(.bakersfieldLight), size: .standard(.h1)).instance
+        let bakersfieldThick = Font(.installed(.bakersfieldBold), size: .standard(.h4)).instance
+        let helveticaLight13 = Font(.custom("Helvetica-Light"), size: .custom(13.0)).instance
+        Utility.logAllAvailableFonts()
+     */
+    
     enum FontType {
         case installed(FontName)
         case custom(String)
@@ -101,12 +110,3 @@ class Utility {
         }
     }
 }
-
-// MARK: - Usage examples
-//let system12 = Font(.system, size: .standard(.h5)).instance
-//let bakersfieldThin  = Font(.installed(.bakersfieldLight), size: .standard(.h1)).instance
-//let bakersfieldThick = Font(.installed(.bakersfieldBold), size: .standard(.h4)).instance
-//let helveticaLight13 = Font(.custom("Helvetica-Light"), size: .custom(13.0)).instance
-//Utility.logAllAvailableFonts()
-
-
